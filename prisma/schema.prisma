@@ -1,0 +1,135 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  username String
+  email String? @unique
+  passwordHash String?
+  sessions UserSession[]
+  rooms Room[]
+  roomRounds RoomRound[]
+  roomCards RoomCard[]
+  roomPlayers RoomPlayer[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserSession {
+  id Int @id @default(autoincrement())
+  token String @unique
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum RoomState {
+  // Aguardando jogadores
+  WAITING_FOR_PLAYERS
+  // Em andamento
+  ONGOING
+  // Concluída
+  FINISHED
+}
+
+model RoomPlayer {
+  id Int @id @default(autoincrement())
+  playerId Int
+  index Int
+  player User @relation(fields: [playerId], references: [id])
+  roomId Int
+  room Room @relation(fields: [roomId], references: [id])
+}
+
+enum CardSymbol {
+  SKIP
+  REVERSE
+  COLOR_CHANGING
+  // +4
+  DRAW_FOUR
+  // +2
+  DRAW_TWO
+  NUMERIC
+}
+
+enum CardColor {
+  RED
+  BLUE
+  GREEN
+  YELLOW
+  // Cartas coringa
+  WILDCARD
+}
+
+model Card {
+  id Int @id @default(autoincrement())
+  color CardColor
+  symbol CardSymbol
+  number Int?
+  roomCards RoomCard[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum RoomFlow {
+  // Sentido horário
+  CLOCKWISE
+  // Sentido anti-horário
+  ANTI_CLOCKWISE
+}
+
+model Room {
+  id Int @id @default(autoincrement())
+  name String @unique
+  // Fluxo da partida (horário ou anti-horário)
+  flow RoomFlow @default(CLOCKWISE)
+  state RoomState
+  creatorId Int
+  creator User @relation(fields: [creatorId], references: [id])
+  rounds RoomRound[]
+  cards RoomCard[]
+  players RoomPlayer[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RoomRound {
+  id Int @id @default(autoincrement())
+  playerId Int
+  player User @relation(fields: [playerId], references: [id])
+  roomId Int
+  room Room @relation(fields: [roomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum RoomCardState {
+  // Em posse de algum jogador
+  ON_HOLD
+  // Na pilha de cartas
+  ON_DECK
+  // Já foi jogada
+  DISPOSED
+}
+
+model RoomCard {
+  id Int @id @default(autoincrement())
+  // Cor definitiva da carta (para cartas coringa, o jogador pode escolher a cor do baralho)
+  consolidatedColor CardColor
+  cardId Int
+  card Card @relation(fields: [cardId], references: [id])
+  roomId Int
+  room Room @relation(fields: [roomId], references: [id])
+  playerId Int?
+  player User? @relation(fields: [playerId], references: [id])
+  state RoomCardState
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
