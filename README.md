@@ -33,3 +33,7 @@ $ ts-node src/seed/cards.seed.ts
 [01:02:11.620] INFO (64672): Criadas 108 novas cartas.
 ✨  Done in 0.97s.
 ```
+
+## Contribuindo com o projeto
+
+...
