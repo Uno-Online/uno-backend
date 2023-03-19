@@ -9,8 +9,11 @@ services:
   db:
     image: mysql:8
     restart: always
+    command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_DATABASE: uno
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
-      - '3306:3306'
+      - '${DB_PORT-0}:3306'
