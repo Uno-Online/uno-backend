@@ -1,5 +1,5 @@
 {
-  "name": "uno-backend",
+  "name": "@uno-online/uno-backend",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,7 +7,9 @@
     "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
-    "lint": "eslint src --ext .ts,.js",
+    "lint": "eslint src --ext .ts,.js --fix",
+    "format": "prettier --write src/",
+    "lint:ci": "prettier --check src/ && eslint src --ext .ts,.js",
     "seed": "ts-node src/seed/cards.seed.ts"
   },
   "devDependencies": {
@@ -31,5 +33,14 @@
     "pino": "^8.11.0",
     "pino-pretty": "^10.0.0",
     "socket.io": "^4.6.1"
+  },
+  "packageManager": "yarn@1.22.19",
+  "engines": {
+    "node": ">=18",
+    "yarn": ">=1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Uno-Online/uno-backend"
   }
 }
