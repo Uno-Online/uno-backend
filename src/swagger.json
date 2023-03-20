@@ -1,0 +1,82 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API do UNO",
+      "version": "1.0.0",
+      "description": "Documentação do jogo online UNO"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000"
+      }
+    ],
+    "paths": {
+      "/authentication/register": {
+        "post": {
+          "tags": ["authentication"],
+          "summary": "Registrar usuário na aplicação",
+          "description": "Você pode se registrar com um nome de usuário para ser autenticado temporáriamente<br>Ou cadastrar um usuário, email e senha para ter um usuário fixo.",
+          "consumes": ["application/json"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "formData",
+              "name": "username",
+              "required": true,
+              "type": "string",
+              "example": "johndoe"
+            },
+            {
+              "in": "formData",
+              "name": "email",
+              "required": false,
+              "type": "string",
+              "example": "johndoe@example.com"
+            },
+            {
+              "in": "formData",
+              "name": "password",
+              "type": "string",
+              "required": false,
+              "format": "password",
+              "example": "password"
+            }
+          ],
+          "responses": {
+          }
+
+        }
+      },
+      "/authentication/login": {
+        "post": {
+          "tags": ["authentication"],
+          "summary": "Acesso com um usuário cadastrado na aplicação",
+          "description": "Login apenas para usuários cadastrados com e-mail, usuário e senha",
+          "consumes": ["application/json"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "formData",
+              "name": "email",
+              "required": true,
+              "type": "string",
+              "example": "johndoe@example.com"
+            },
+            {
+              "in": "formData",
+              "name": "password",
+              "type": "string",
+              "required": true,
+              "format": "password",
+              "example": "password"
+            }
+          ],
+          "responses": {
+          }
+
+        }
+      }
+
+    }
+  }
+  
