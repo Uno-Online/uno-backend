@@ -12,7 +12,7 @@ app.use(express.json());
 app.use('/', express.static('public'));
 app.use(router);
 
-const swaggerDocument = JSON.parse(fs.readFileSync('./swagger.json', 'utf-8'));
+const swaggerDocument = JSON.parse(fs.readFileSync('./src/swagger.json', 'utf-8'));
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 

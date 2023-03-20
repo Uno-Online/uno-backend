@@ -1,0 +1,38 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API do UNO",
+      "version": "1.0.0",
+      "description": "Uma API de exemplo para demonstrar a documentação com Swagger"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000"
+      }
+    ],
+    "paths": {
+      "/rota-de-exemplo": {
+        "get": {
+          "summary": "Exemplo de rota GET",
+          "responses": {
+            "200": {
+              "description": "Sucesso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "mensagem": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
