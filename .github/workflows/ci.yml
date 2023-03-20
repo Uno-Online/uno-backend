@@ -12,20 +12,7 @@ concurrency:
 
 jobs:
   build:
-    name: 🏗️ Build
-    timeout-minutes: 30
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version-file: .nvmrc
-          cache: yarn
-      - run: yarn --frozen-lockfile
-      - run: yarn build
-
-  lint:
-    name: 🧹 Lint
+    name: 🧹 Lint and 🏗️ Build
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
@@ -36,3 +23,4 @@ jobs:
           cache: yarn
       - run: yarn --frozen-lockfile
       - run: yarn lint:ci
+      - run: yarn build
