@@ -40,12 +40,14 @@ enum RoomState {
 }
 
 model RoomPlayer {
-  id        Int   @id @default(autoincrement())
-  playerId  Int
-  index     Int
-  player    User  @relation(fields: [playerId], references: [id])
-  roomId    Int
-  room      Room  @relation(fields: [roomId], references: [id])
+  id Int @id @default(autoincrement())
+  playerId Int
+  index Int
+  player User @relation(fields: [playerId], references: [id])
+  roomId Int
+  room Room @relation(fields: [roomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum CardSymbol {
