@@ -15,7 +15,6 @@ app.use(router);
 const swaggerDocument = JSON.parse(fs.readFileSync('./src/swagger.json', 'utf-8'));
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-
 SocketServer.init(server);
 
 const port = process.env.PORT || 3000;

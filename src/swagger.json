@@ -3,7 +3,7 @@
     "info": {
       "title": "API do UNO",
       "version": "1.0.0",
-      "description": "Uma API de exemplo para demonstrar a documentação com Swagger"
+      "description": "Documentação do jogo online UNO"
     },
     "servers": [
       {
@@ -11,28 +11,47 @@
       }
     ],
     "paths": {
-      "/rota-de-exemplo": {
-        "get": {
-          "summary": "Exemplo de rota GET",
+      "/authentication/register": {
+        "post": {
+          "tags": ["authentication"],
+          "summary": "Registrar usuário na aplicação",
+          "description": "",
+          "consumes": ["application/json"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "formData",
+              "name": "username",
+              "required": true,
+              "type": "string",
+              "example": "johndoe"
+            },
+            {
+              "in": "formData",
+              "name": "email",
+              "required": true,
+              "type": "string",
+              "example": "johndoe@example.com"
+            },
+            {
+              "in": "formData",
+              "name": "password",
+              "type": "string",
+              "required": true,
+              "format": "password",
+              "example": "password"
+            }
+          ],
           "responses": {
-            "200": {
-              "description": "Sucesso",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "mensagem": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
+            "201": {
+              "description": "Usuário criado com sucesso",
+              "schema": {}
             }
           }
+
         }
       }
+
     }
   }
   
