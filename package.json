@@ -1,14 +1,17 @@
 {
-  "name": "uno-backend",
-  "version": "1.0.0",
+  "name": "@uno-online/uno-backend",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
-    "lint": "eslint src --ext .ts,.js",
-    "seed": "ts-node src/seed/cards.seed.ts"
+    "lint": "eslint src --ext .ts,.js --fix",
+    "format": "prettier --write src/",
+    "lint:ci": "prettier --check src/ && eslint src --ext .ts,.js",
+    "seed": "ts-node src/seed/cards.seed.ts",
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -28,6 +31,8 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
+    "@changesets/changelog-github": "^0.4.8",
+    "@changesets/cli": "^2.26.0",
     "@prisma/client": "4.11.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
@@ -37,5 +42,14 @@
     "pino-pretty": "^10.0.0",
     "socket.io": "^4.6.1",
     "zod": "^3.21.4"
+  },
+  "packageManager": "yarn@1.22.19",
+  "engines": {
+    "node": ">=18",
+    "yarn": ">=1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Uno-Online/uno-backend"
   }
 }
