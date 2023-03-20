@@ -1,9 +1,8 @@
 import { RoomState } from '@prisma/client';
 import type { Request, Response } from 'express';
 import { prisma } from '../prisma';
-import type { Controller } from '../types';
 
-export class RoomController implements Controller {
+export class RoomController {
   /**
    * Retorna uma lista paginada de salas abertas
    * */
