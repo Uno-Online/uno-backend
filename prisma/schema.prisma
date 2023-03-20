@@ -8,26 +8,26 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  username String
-  email String? @unique
-  passwordHash String?
-  sessions UserSession[]
-  rooms Room[]
-  roomRounds RoomRound[]
-  roomCards RoomCard[]
-  roomPlayers RoomPlayer[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int           @id @default(autoincrement())
+  username      String
+  email         String?       @unique
+  passwordHash  String?
+  sessions      UserSession[]
+  rooms         Room[]
+  roomRounds    RoomRound[]
+  roomCards     RoomCard[]
+  roomPlayers   RoomPlayer[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 model UserSession {
-  id Int @id @default(autoincrement())
-  token String @unique
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int       @id @default(autoincrement())
+  token       String    @unique
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 enum RoomState {
@@ -40,12 +40,12 @@ enum RoomState {
 }
 
 model RoomPlayer {
-  id Int @id @default(autoincrement())
-  playerId Int
-  index Int
-  player User @relation(fields: [playerId], references: [id])
-  roomId Int
-  room Room @relation(fields: [roomId], references: [id])
+  id        Int   @id @default(autoincrement())
+  playerId  Int
+  index     Int
+  player    User  @relation(fields: [playerId], references: [id])
+  roomId    Int
+  room      Room  @relation(fields: [roomId], references: [id])
 }
 
 enum CardSymbol {
@@ -69,13 +69,13 @@ enum CardColor {
 }
 
 model Card {
-  id Int @id @default(autoincrement())
-  color CardColor
-  symbol CardSymbol
-  number Int?
+  id        Int         @id @default(autoincrement())
+  color     CardColor
+  symbol    CardSymbol
+  number    Int?
   roomCards RoomCard[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
 }
 
 enum RoomFlow {
@@ -86,28 +86,28 @@ enum RoomFlow {
 }
 
 model Room {
-  id Int @id @default(autoincrement())
-  name String @unique
+  id          Int           @id @default(autoincrement())
+  name        String        @unique
   // Fluxo da partida (horário ou anti-horário)
-  flow RoomFlow @default(CLOCKWISE)
-  state RoomState
-  creatorId Int
-  creator User @relation(fields: [creatorId], references: [id])
-  rounds RoomRound[]
-  cards RoomCard[]
-  players RoomPlayer[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  flow        RoomFlow      @default(CLOCKWISE)
+  state       RoomState
+  creatorId   Int
+  creator     User          @relation(fields: [creatorId], references: [id])
+  rounds      RoomRound[]
+  cards       RoomCard[]
+  players     RoomPlayer[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 }
 
 model RoomRound {
-  id Int @id @default(autoincrement())
-  playerId Int
-  player User @relation(fields: [playerId], references: [id])
-  roomId Int
-  room Room @relation(fields: [roomId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        Int       @id @default(autoincrement())
+  playerId  Int
+  player    User      @relation(fields: [playerId], references: [id])
+  roomId    Int
+  room      Room      @relation(fields: [roomId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 enum RoomCardState {
@@ -120,16 +120,16 @@ enum RoomCardState {
 }
 
 model RoomCard {
-  id Int @id @default(autoincrement())
+  id                  Int             @id @default(autoincrement())
   // Cor definitiva da carta (para cartas coringa, o jogador pode escolher a cor do baralho)
-  consolidatedColor CardColor
-  cardId Int
-  card Card @relation(fields: [cardId], references: [id])
-  roomId Int
-  room Room @relation(fields: [roomId], references: [id])
-  playerId Int?
-  player User? @relation(fields: [playerId], references: [id])
-  state RoomCardState
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  consolidatedColor   CardColor
+  cardId              Int
+  card                Card            @relation(fields: [cardId], references: [id])
+  roomId              Int
+  room                Room            @relation(fields: [roomId], references: [id])
+  playerId            Int?
+  player              User?           @relation(fields: [playerId], references: [id])
+  state               RoomCardState
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
 }
