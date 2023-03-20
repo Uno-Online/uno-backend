@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@prisma/client": "4.11.0",
+    "chokidar": "^3.5.3",
     "express": "^4.18.2",
     "pino": "^8.11.0",
     "pino-pretty": "^10.0.0",
