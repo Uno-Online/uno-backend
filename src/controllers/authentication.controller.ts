@@ -8,8 +8,6 @@ import { TypedBodyRequest } from '../types/typedBody';
 import { JWTAdapter } from '../adapters/jwt_adapter';
 
 export class AuthenticationController implements Controller {
-  private hi = 'hello';
-
   private jwt = new JWTAdapter(process.env!.JWT_SECRET!);
 
   async index(req: Request, res: Response) {

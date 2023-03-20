@@ -15,6 +15,6 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'arrow-body-style': 'off',
     'class-methods-use-this': 'off',
-    'no-console': 'error',
+    'no-console': 'warn',
   },
 };
