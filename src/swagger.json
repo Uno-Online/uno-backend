@@ -43,10 +43,6 @@
             }
           ],
           "responses": {
-            "201": {
-              "description": "Usuário criado com sucesso",
-              "schema": {}
-            }
           }
 
         }
