@@ -16,6 +16,13 @@ export const authMiddleware = async (
       const payload = JwtService.decrypt<{ userId: number }>(authToken);
 
       const user = await prisma.user.findFirst({
+        select: {
+          id: true,
+          username: true,
+          email: true,
+          createdAt: true,
+          updatedAt: true,
+        },
         where: {
           id: payload.userId,
           sessions: {
