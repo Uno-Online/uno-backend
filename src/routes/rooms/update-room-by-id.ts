@@ -9,11 +9,11 @@ export const updateRoomNameById = async (
   req: RequestWithUser,
   res: Response
 ) => {
-  const param = paramIdValidationSchema.safeParse(req.params?.id);
+  const params = paramIdValidationSchema.safeParse(req.params?.id);
   const body = roomNameValidatorSchema.safeParse(req.body);
   const userId = req.user?.id;
 
-  if (!param.success) {
+  if (!params.success) {
     return res.status(400).json({ success: false, message: 'Invalid param' });
   }
 
@@ -25,7 +25,10 @@ export const updateRoomNameById = async (
 
   const room = await prisma.room.findUnique({
     where: {
-      id: param.data,
+      id: params.data,
+    },
+    select: {
+      creatorId: true,
     },
   });
 
@@ -44,7 +47,7 @@ export const updateRoomNameById = async (
   try {
     await prisma.room.update({
       where: {
-        id: param.data,
+        id: params.data,
       },
       data: {
         name: body.data.name,
@@ -61,14 +64,20 @@ export const updateRoomNameById = async (
     return res.status(500).json({ success: false });
   }
 
-  const resRoom = {
-    id: room.id,
-    name: body.data.name,
-    flow: room.flow,
-    state: room.state,
-    createdAt: room.createdAt,
-    updatedAt: room.updatedAt,
-  };
+  const resRoom = await prisma.room.findUnique({
+    where: {
+      id: params.data,
+    },
+    select: {
+      id: true,
+      name: true,
+      creatorId: false,
+      flow: true,
+      state: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
 
   return res.json(resRoom);
 };
