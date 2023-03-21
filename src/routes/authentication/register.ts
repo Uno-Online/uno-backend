@@ -17,37 +17,36 @@ export const register = async (req: Request, res: Response) => {
 
   const { data } = body;
 
-  prisma.user
-    .create({
+  try {
+    const user = await prisma.user.create({
       data: {
         username: data.username,
         email: data.email,
         passwordHash: await bcrypt.hash(data.password, SALT_ROUNDS),
       },
-    })
-    .then(async (user) => {
-      const token = JwtService.encrypt({ userId: user.id });
-
-      await prisma.userSession.create({
-        data: {
-          token,
-          userId: user.id,
-        },
-      });
-
-      res.cookie(CookieKey.AuthToken, token, {
-        httpOnly: true,
-      });
-
-      res.json({
-        success: true,
-      });
-    })
-    .catch((err: unknown) => {
-      if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        if (err.code === 'P2002') {
-          res.status(400).send('username or email already in use');
-        }
-      }
     });
+
+    const token = JwtService.encrypt({ userId: user.id });
+
+    await prisma.userSession.create({
+      data: {
+        token,
+        userId: user.id,
+      },
+    });
+
+    res.cookie(CookieKey.AuthToken, token, {
+      httpOnly: true,
+    });
+
+    res.json({
+      success: true,
+    });
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      if (err.code === 'P2002') {
+        res.status(400).send('username or email already in use');
+      }
+    }
+  }
 };
