@@ -27,10 +27,6 @@ export const updateRoomNameById = async (
     where: {
       id: id.data,
     },
-    select: {
-      id: true,
-      creatorId: true,
-    },
   });
 
   if (room === null) {
@@ -63,5 +59,15 @@ export const updateRoomNameById = async (
       }
     }
   }
-  return res.json({ success: true });
+
+  const resRoom = {
+    id: room.id,
+    name: body.data.name,
+    flow: room.flow,
+    state: room.state,
+    createdAt: room.createdAt,
+    updatedAt: room.updatedAt,
+  };
+
+  return res.json(resRoom);
 };
