@@ -9,11 +9,11 @@ export const updateRoomNameById = async (
   req: RequestWithUser,
   res: Response
 ) => {
-  const id = paramIdValidationSchema.safeParse(req.params?.id);
+  const param = paramIdValidationSchema.safeParse(req.params?.id);
   const body = roomNameValidatorSchema.safeParse(req.body);
   const userId = req.user?.id;
 
-  if (!id.success) {
+  if (!param.success) {
     return res.status(400).json({ success: false, message: 'Invalid param' });
   }
 
@@ -25,11 +25,11 @@ export const updateRoomNameById = async (
 
   const room = await prisma.room.findUnique({
     where: {
-      id: id.data,
+      id: param.data,
     },
   });
 
-  if (room === null) {
+  if (!room) {
     return res
       .status(400)
       .json({ success: false, message: 'Room does not exist' });
@@ -44,7 +44,7 @@ export const updateRoomNameById = async (
   try {
     await prisma.room.update({
       where: {
-        id: id.data,
+        id: param.data,
       },
       data: {
         name: body.data.name,
@@ -58,6 +58,7 @@ export const updateRoomNameById = async (
           .json({ success: false, message: 'Room name already in use' });
       }
     }
+    return res.status(500).json({ success: false });
   }
 
   const resRoom = {
