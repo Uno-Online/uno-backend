@@ -25,9 +25,7 @@ export const register = async (req: Request, res: Response) => {
         passwordHash: await bcrypt.hash(data.password, SALT_ROUNDS),
       },
     });
-
-    const token = JwtService.encrypt({ userId: user.id });
-
+    const token = JwtService.secureEncrypt({ user });
     await prisma.userSession.create({
       data: {
         token,

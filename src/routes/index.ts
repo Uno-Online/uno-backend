@@ -6,3 +6,6 @@ export const router = Router();
 
 router.use('/rooms', roomsRouter);
 router.use('/authentication', authRouter);
+router.get('/health',(req,res)=>{
+  res.send(true)
+})
