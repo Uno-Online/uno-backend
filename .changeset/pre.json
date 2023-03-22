@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@uno-online/uno-backend": "0.0.1"
+  },
+  "changesets": [
+    "dirty-coins-beam",
+    "plenty-bobcats-turn"
+  ]
+}
