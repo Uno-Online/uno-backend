@@ -1,7 +1,5 @@
 Classe estendida da classe `Error` do javascript para lançamento de exceções HTTP do express.
 
-> A utilização dos métodos de exceção estendidos dessa classe precisam estar de acordo com o contexto utilizado pelo [middleware de erro](https://byefive.atlassian.net/wiki/spaces/BYEFIVE/pages/360675/Middleware+de+tratamento+de+erros). A não utilização ocorrerá em problemas de resposta do servidor.
-
 ## Exemplo
 
 Para esse exemplo, será utilizada a classe `BadRequestException` que estende a classe `HttpException`.
