@@ -3,3 +3,8 @@ dist/
 .DS_Store
 .env
 coverage/
+
+# Package managers
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
