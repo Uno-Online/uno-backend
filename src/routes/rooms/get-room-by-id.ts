@@ -6,9 +6,7 @@ export const getRoomById = async (req: Request, res: Response) => {
   const params = paramIdValidationSchema.safeParse(req.params?.id);
 
   if (!params.success) {
-    return res
-      .status(400)
-      .json({ success: false, message: 'Invalid param' });
+    return res.status(400).json({ success: false, message: 'Invalid param' });
   }
 
   const room = await prisma.room.findUnique({
@@ -33,7 +31,7 @@ export const getRoomById = async (req: Request, res: Response) => {
 
   if (!room) {
     return res.json({ success: false });
-  } 
+  }
 
   return res.json({
     ...room,
