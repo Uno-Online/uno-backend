@@ -11,14 +11,14 @@ export const getUserLogged = async (req: RequestWithUser, res: Response) => {
   const token = req.cookies[CookieKey.AuthToken]
 
   if (!userId || !token) {
-    return res.json({ success: false });
+    return res.json({ success: false, message: 'user not logged' });
   }
 
   const userSession = await prisma.userSession.findFirst({
     where: {
        AND: [
         {
-          id: Number(userId)
+          userId: Number(userId)
         },
         {
           token
@@ -28,7 +28,7 @@ export const getUserLogged = async (req: RequestWithUser, res: Response) => {
   });
 
   if (!userSession) {
-    return res.json({ success: false });
+    return res.json({ success: false, message: 'error find session' });
   } 
 
   const userLogged = await prisma.user.findUnique({
@@ -43,7 +43,7 @@ export const getUserLogged = async (req: RequestWithUser, res: Response) => {
   })
 
   if (!userLogged) {
-    return res.json({ success: false });
+    return res.json({ success: false, message: 'user not found' });
   } 
 
   return res.json(userLogged);
