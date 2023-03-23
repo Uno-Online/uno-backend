@@ -1,25 +1,28 @@
 import { Response } from 'express';
 import { prisma } from '../../prisma';
 import { RequestWithUser } from '../../types/request-with-user';
+import { usernameValidationSchema } from './username.validation';
 
 export const changeUsername = async (req: RequestWithUser, res: Response ): Promise<Response> => {
-  const username = req.body.username ? String(req.body.username).trim() : undefined;
+  const body = usernameValidationSchema.safeParse(req.body);
 
-  if(!username) {
+  if(!body.success) {
     return res.json({ success: false, message: 'Invalid request body' })
   }
 
-  if (req.user?.username === username) {
+  const { data } = body;
+
+  if (req.user?.username === data.username) {
     return res.json({
       id: req.user?.id,
-      username,
+      username: data.username,
       email: req.user?.email,
     });
   }
 
   const usernameInUse = await prisma.user.findFirst({
     where: {
-      username,
+      username: data.username,
     },
   });
 
@@ -32,13 +35,13 @@ export const changeUsername = async (req: RequestWithUser, res: Response ): Prom
       username: req.user?.username,
     },
     data: {
-      username,
+      username: data.username,
     },
   });
 
   return res.json({
     id: req.user?.id,
-    username,
+    username: data.username,
     email: req.user?.email,
   });
 };
