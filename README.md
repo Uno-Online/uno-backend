@@ -37,3 +37,5 @@ $ ts-node src/seed/cards.seed.ts
 ## Contribuindo com o projeto
 
 ...
+
+## 👨‍💻👩‍💻 Contribuidores
