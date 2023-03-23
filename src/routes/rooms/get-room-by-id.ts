@@ -1,24 +1,42 @@
 import type { Request, Response } from 'express';
 import { prisma } from '../../prisma';
+import { paramIdValidationSchema } from './param-id.validation';
 
-/**
- * Retorna uma lista paginada de salas abertas
- * */
 export const getRoomById = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const params = paramIdValidationSchema.safeParse(req.params?.id);
+
+  if (!params.success) {
+    return res
+      .status(400)
+      .json({ success: false, message: 'Invalid param' });
+  }
 
   const room = await prisma.room.findUnique({
-    include: {
-      _count: {
-        select: { players: true },
+    where: {
+      id: params.data,
+    },
+    select: {
+      id: true,
+      name: true,
+      players: {
+        select: {
+          player: {
+            select: {
+              id: true,
+              username: true,
+            },
+          },
+        },
       },
     },
-    where: { id: Number(id) },
   });
 
-  if (room) {
-    res.json(room);
-  } else {
-    res.json({ success: false });
-  }
+  if (!room) {
+    return res.json({ success: false });
+  } 
+
+  return res.json({
+    ...room,
+    players: room.players.flatMap((obj) => obj.player),
+  });
 };
