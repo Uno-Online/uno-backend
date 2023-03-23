@@ -1,5 +1,7 @@
 # UNO Backend
 
+[![All Contributors](https://img.shields.io/github/all-contributors/Uno-Online/uno-backend?color=ee8449&style=flat-square)](#-contribuidores)
+
 ## Instalando dependências
 
 Basta rodar:
@@ -39,3 +41,12 @@ $ ts-node src/seed/cards.seed.ts
 ...
 
 ## 👨‍💻👩‍💻 Contribuidores
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
