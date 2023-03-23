@@ -1,17 +1,11 @@
 import bcrypt from 'bcryptjs';
-import { Response } from 'express';
+import { Response, Request } from 'express';
 import { CookieKey } from '../../constants/cookie-key';
 import { prisma } from '../../prisma';
 import { JwtService } from '../../services';
-import TypedBody from '../../types/typed-body';
 import { loginValidationSchema } from './login.validation';
 
-interface LoginBody {
-  email: string;
-  password: string;
-}
-
-export const login = async (req: TypedBody<LoginBody>, res: Response) => {
+export const login = async (req: Request, res: Response) => {
   const parsed = loginValidationSchema.safeParse(req.body);
   if (!parsed.success) {
     res.send('invalid request body');
