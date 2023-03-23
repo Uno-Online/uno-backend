@@ -41,6 +41,7 @@ $ ts-node src/seed/cards.seed.ts
 
 ...
 
+
 ## Contribuidores ✨
 
 Muito obrigado a todas essas pessoas maravilhosas! ([emojis?](https://allcontributors.org/docs/en/emoji-key)):
