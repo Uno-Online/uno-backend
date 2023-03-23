@@ -18,11 +18,15 @@ export const register = async (req: Request, res: Response) => {
   const { data } = body;
 
   try {
+    const isGuest = !!(data.password && data.email);
     const user = await prisma.user.create({
       data: {
         username: data.username,
         email: data.email,
-        passwordHash: await bcrypt.hash(data.password, SALT_ROUNDS),
+        passwordHash: isGuest
+          ? undefined
+          : await bcrypt.hash(data.password!, SALT_ROUNDS),
+        isGuest, // todo isso me parece pouco seguro
       },
     });
 

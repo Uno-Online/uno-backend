@@ -9,9 +9,10 @@ datasource db {
 
 model User {
   id            Int           @id @default(autoincrement())
-  username      String        @unique
+  username      String
   email         String?       @unique
   passwordHash  String?
+  isGuest       Boolean
   sessions      UserSession[]
   rooms         Room[]
   roomRounds    RoomRound[]
