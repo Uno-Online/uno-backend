@@ -20,17 +20,19 @@ export const changeUsername = async (
       id: req.user?.id,
       username: data.username,
       email: req.user?.email,
+      createdAt: req.user?.createdAt,
+      updatedAt: req.user?.updatedAt,
     });
   }
 
-  const usernameInUse = await prisma.user.findFirst({
+  const usernameInUse = await prisma.user.count({
     where: {
       username: data.username,
     },
   });
 
-  if (usernameInUse) {
-    return res.json({
+  if (usernameInUse >= 1) {
+    return res.status(400).json({
       success: false,
       message: 'Username is already being used',
     });
@@ -38,7 +40,7 @@ export const changeUsername = async (
 
   await prisma.user.update({
     where: {
-      username: req.user?.username,
+      id: req.user?.id,
     },
     data: {
       username: data.username,
@@ -49,5 +51,7 @@ export const changeUsername = async (
     id: req.user?.id,
     username: data.username,
     email: req.user?.email,
+    createdAt: req.user?.createdAt,
+    updatedAt: req.user?.updatedAt,
   });
 };
