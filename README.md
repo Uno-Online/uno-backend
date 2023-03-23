@@ -1,6 +1,6 @@
 # UNO Backend
 
-[![All Contributors](https://img.shields.io/github/all-contributors/Uno-Online/uno-backend?color=ee8449&style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/github/all-contributors/Uno-Online/uno-backend?color=ee8449&style=flat-square)](#-contribuidores)
 
 ## Instalando dependências
 
