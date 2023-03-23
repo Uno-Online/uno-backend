@@ -1,6 +1,7 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
+// Defina o esquema para a validação do objeto do usuário.
 export const loginValidationSchema = z.object({
-  username: z.string(),
-  password: z.string().min(7).max(20),
+  email: z.string().email(),
+  password: z.string().max(20),
 });

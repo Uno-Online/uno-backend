@@ -7,7 +7,7 @@ import TypedBody from '../../types/typed-body';
 import { loginValidationSchema } from './login.validation';
 
 interface LoginBody {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -21,16 +21,16 @@ export const login = async (req: TypedBody<LoginBody>, res: Response) => {
 
   const user = await prisma.user.findUnique({
     where: {
-      username: data.username,
+      email: data.email,
     },
   });
 
   if (!user) {
-    res.status(400).send('invalid username or password');
+    res.status(400).send('invalid email or password');
     return;
   }
 
-  if (await bcrypt.compare(data.password, user.passwordHash)) {
+  if (await bcrypt.compare(data.password, user.passwordHash!)) {
     const token = JwtService.encrypt({ userId: user.id });
 
     res.cookie(CookieKey.AuthToken, token, {

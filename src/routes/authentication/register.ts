@@ -22,7 +22,8 @@ export const register = async (req: Request, res: Response) => {
       data: {
         username: data.username,
         email: data.email,
-        passwordHash: await bcrypt.hash(data.password, SALT_ROUNDS),
+        passwordHash: data.password && await bcrypt.hash(data.password, SALT_ROUNDS),
+        isGuest: !!(data.password&&data.email), // todo isso me parece pouco seguro
       },
     });
 
