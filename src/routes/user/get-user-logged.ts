@@ -8,7 +8,7 @@ import { CookieKey } from '../../constants/cookie-key';
  * */
 export const getUserLogged = async (req: RequestWithUser, res: Response) => {
   const userId = req.user?.id;
-  const token = req.cookies[CookieKey.AuthToken]
+  const token = req.cookies[CookieKey.AuthToken];
 
   if (!userId || !token) {
     return res.json({ success: false, message: 'user not logged' });
@@ -16,35 +16,35 @@ export const getUserLogged = async (req: RequestWithUser, res: Response) => {
 
   const userSession = await prisma.userSession.findFirst({
     where: {
-       AND: [
+      AND: [
         {
-          userId: Number(userId)
+          userId: Number(userId),
         },
         {
-          token
-        }
-       ]
+          token,
+        },
+      ],
     },
   });
 
   if (!userSession) {
     return res.json({ success: false, message: 'error find session' });
-  } 
+  }
 
   const userLogged = await prisma.user.findUnique({
     where: {
-      id: userSession.userId
+      id: userSession.userId,
     },
     select: {
       id: true,
       username: true,
-      email: true
-    }
-  })
+      email: true,
+    },
+  });
 
   if (!userLogged) {
     return res.json({ success: false, message: 'user not found' });
-  } 
+  }
 
   return res.json(userLogged);
 };
