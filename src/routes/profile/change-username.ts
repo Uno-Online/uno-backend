@@ -3,11 +3,14 @@ import { prisma } from '../../prisma';
 import { RequestWithUser } from '../../types/request-with-user';
 import { usernameValidationSchema } from './username.validation';
 
-export const changeUsername = async (req: RequestWithUser, res: Response ): Promise<Response> => {
+export const changeUsername = async (
+  req: RequestWithUser,
+  res: Response
+): Promise<Response> => {
   const body = usernameValidationSchema.safeParse(req.body);
 
-  if(!body.success) {
-    return res.json({ success: false, message: 'Invalid request body' })
+  if (!body.success) {
+    return res.json({ success: false, message: 'Invalid request body' });
   }
 
   const { data } = body;
@@ -27,7 +30,10 @@ export const changeUsername = async (req: RequestWithUser, res: Response ): Prom
   });
 
   if (usernameInUse) {
-    return res.json({ success: false, message: 'Username is already being used' });
+    return res.json({
+      success: false,
+      message: 'Username is already being used',
+    });
   }
 
   await prisma.user.update({
