@@ -43,7 +43,7 @@ $ ts-node src/seed/cards.seed.ts
 
 ## Contribuidores ✨
 
-Muito obrigado a todas essas pessoas maravilhosas! ([o que são esses emojis?](https://allcontributors.org/docs/en/emoji-key)):
+Muito obrigado a todas essas pessoas maravilhosas! ([emojis?](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
