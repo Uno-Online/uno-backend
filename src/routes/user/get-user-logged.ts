@@ -13,7 +13,7 @@ export const getUserLogged = async (req: RequestWithUser, res: Response) => {
     id: req.user.id,
     username: req.user.username,
     email: req.user.email,
-  }
+  };
 
   return res.json(userLogged);
 };
