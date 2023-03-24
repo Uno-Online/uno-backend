@@ -9,3 +9,9 @@ export const COLOR_CHANGING_CARDS_IN_DECK = 4;
 
 // Quantidade de hashes que haverá em senhas
 export const SALT_ROUNDS = 12;
+
+// URL da svg do avatar do usuario
+export const AVATAR_SVG_URL = 'https://api.dicebear.com/5.x/fun-emoji/svg';
+
+// Valor que define o tamanho da seed
+export const SEED_SIZE = 100000;
