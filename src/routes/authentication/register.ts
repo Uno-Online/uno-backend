@@ -12,7 +12,7 @@ import { BadRequestException } from '../../exceptions';
 
 export const register = async (req: Request, res: Response) => {
   const genEmail = () =>
-    new Promise((resolve, reject) => {
+    new Promise<string>((resolve, reject) => {
       randomBytes(85, (err, data) => {
         if (err) reject();
         if (data) resolve(`${data.toString('hex')}@p.com`);
@@ -33,7 +33,7 @@ export const register = async (req: Request, res: Response) => {
     const user = await prisma.user.create({
       data: {
         username: data.username,
-        email: data.email || `${await genEmail()}`,
+        email: data.email || (await genEmail()),
         passwordHash: isGuest
           ? undefined
           : await bcrypt.hash(data.password!, SALT_ROUNDS),
