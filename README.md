@@ -1,4 +1,7 @@
 # UNO Backend
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Instalando dependências
 
@@ -37,3 +40,29 @@ $ ts-node src/seed/cards.seed.ts
 ## Contribuindo com o projeto
 
 ...
+
+
+## Contribuidores ✨
+
+Muito obrigado a todas essas pessoas maravilhosas! ([emojis?](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/fell-lucas"><img src="https://avatars.githubusercontent.com/u/47724710?v=4?s=100" width="100px;" alt="Lucas Fell"/><br /><sub><b>Lucas Fell</b></sub></a><br /><a href="#infra-fell-lucas" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-fell-lucas" title="Maintenance">🚧</a> <a href="#tool-fell-lucas" title="Tools">🔧</a> <a href="https://github.com/Uno-Online/uno-backend/pulls?q=is%3Apr+reviewed-by%3Afell-lucas" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/deyvis0n"><img src="https://avatars.githubusercontent.com/u/82903398?v=4?s=100" width="100px;" alt="deyvis0n"/><br /><sub><b>deyvis0n</b></sub></a><br /><a href="https://github.com/Uno-Online/uno-backend/commits?author=deyvis0n" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+Esse projeto segue a especificação [@all-contributors](https://github.com/all-contributors/all-contributors). Contribuições de todas as formas são bem vindas! 
+
+Por favor, depois de contribuir de qualquer forma, [chame o bot @all-contributors](https://github.com/Uno-Online/uno-backend/pull/41#issuecomment-1481839393) em qualquer issue ou PR e se adicione nesta seção de contribuidores!

@@ -1,4 +1,5 @@
 import { Prisma } from '@prisma/client';
+import { randomBytes } from 'crypto';
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import { prisma } from '../../prisma';
@@ -8,6 +9,14 @@ import { CookieKey } from '../../constants/cookie-key';
 import { JwtService } from '../../services';
 
 export const register = async (req: Request, res: Response) => {
+  const genEmail = () =>
+    new Promise((resolve, reject) => {
+      randomBytes(85, (err, data) => {
+        if (err) reject();
+        if (data) resolve(`${data.toString('hex')}@p.com`);
+      });
+    });
+
   const body = registerValidationSchema.safeParse(req.body);
 
   if (!body.success) {
@@ -18,15 +27,15 @@ export const register = async (req: Request, res: Response) => {
   const { data } = body;
 
   try {
-    const isGuest = !!(data.password && data.email);
+    const isGuest = !(data.password && data.email);
     const user = await prisma.user.create({
       data: {
         username: data.username,
-        email: data.email,
+        email: data.email || `${await genEmail()}`,
         passwordHash: isGuest
           ? undefined
           : await bcrypt.hash(data.password!, SALT_ROUNDS),
-        isGuest, // todo isso me parece pouco seguro
+        isGuest,
       },
     });
 
@@ -50,7 +59,9 @@ export const register = async (req: Request, res: Response) => {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === 'P2002') {
         res.status(400).send('username or email already in use');
+        return;
       }
     }
+    res.status(500).send(err);
   }
 };
