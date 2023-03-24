@@ -7,6 +7,8 @@ import { registerValidationSchema } from './register.validation';
 import { SALT_ROUNDS } from '../../constants';
 import { CookieKey } from '../../constants/cookie-key';
 import { JwtService } from '../../services';
+import UniqueConstraintViolation from '../../exceptions/unique-constraint-violation';
+import { BadRequestException } from '../../exceptions';
 
 export const register = async (req: Request, res: Response) => {
   const genEmail = () =>
@@ -58,10 +60,12 @@ export const register = async (req: Request, res: Response) => {
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === 'P2002') {
-        res.status(400).send('username or email already in use');
-        return;
+        throw new UniqueConstraintViolation('email already in use');
       }
     }
-    res.status(500).send(err);
+    if (err instanceof Error) {
+      throw new BadRequestException(err);
+    }
+    throw new BadRequestException('something went wrong');
   }
 };
