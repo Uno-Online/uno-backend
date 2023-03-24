@@ -21,4 +21,4 @@ const server = http.createServer(app);
 
 SocketServer.init(server);
 
-server.listen(process.env.PORT || 5000, () => logger.info('Server started'));
+server.listen(process.env.PORT || 3000, () => logger.info('Server started'));
