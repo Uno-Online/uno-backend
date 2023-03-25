@@ -1,46 +1,66 @@
 # UNO Backend
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+[![Discord](https://img.shields.io/badge/-Discord-7289DA?logo=discord&logoColor=ffffff&style=flat-square)](https://discord.gg/7wqrRq53)
 
 ## Instalando dependências
 
-Basta rodar:
+### Pré-requisitos
+
+Antes de instalar as dependências, você precisa ter o Node.js instalado em sua máquina. Você pode baixar a versão mais recente do Node.js em [https://nodejs.org](https://nodejs.org).
+
+### Instalação de dependências com npm
+
+Para instalar as dependências de um projeto usando o npm, abra um terminal na pasta raiz do projeto e execute o seguinte comando:
 
 ```
 npm install
 ```
 
-Ou, com `yarn`:
+Este comando irá instalar todas as dependências listadas no arquivo `package.json` na pasta `node_modules`.
+
+### Instalação de dependências com yarn
+
+Para instalar as dependências de um projeto usando o yarn, abra um terminal na pasta raiz do projeto e execute o seguinte comando:
 
 ```
 yarn
 ```
 
-## Semeando o banco
+Este comando irá instalar todas as dependências listadas no arquivo `package.json` na pasta `node_modules`.
 
-Para criar as 108 cartas base do jogo, você deve semear o banco de dados.
-Basta rodar:
+## Iniciando o banco de dados com Docker Compose 🐳
+
+Para iniciar o MySQL com o Docker Compose, é necessário ter o Docker instalado na máquina. Se você não tem o Docker instalado, siga as instruções de instalação em [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/).
+
+### Passo a passo
+
+Abra um terminal na raiz do projeto, onde o arquivo `docker-compose.yml` está localizado.
+
+Execute o seguinte comando para iniciar o serviço:
 
 ```
-yarn seed
+docker-compose up -d prisma
 ```
 
-Você verá algo como:
+Este comando irá iniciar o serviço de instalação do MySQL em background.
+
+Quando o comando termminar, você pode verificar se o banco de dados está em execução:
 
 ```
-yarn run v1.22.19
-$ ts-node src/seed/cards.seed.ts
-[01:02:11.576] INFO (64672): Apagando todas as cartas existentes...
-[01:02:11.611] INFO (64672): Criando novas cartas...
-[01:02:11.620] INFO (64672): Criadas 108 novas cartas.
-✨  Done in 0.97s.
+docker ps
 ```
+
+Este comando irá exibir todos os contêineres em execução. O contêiner do MySQL deve estar listado.
 
 ## Contribuindo com o projeto
 
 ...
-
 
 ## Contribuidores ✨
 
@@ -64,6 +84,6 @@ Muito obrigado a todas essas pessoas maravilhosas! ([emojis?](https://allcontrib
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-Esse projeto segue a especificação [@all-contributors](https://github.com/all-contributors/all-contributors). Contribuições de todas as formas são bem vindas! 
+Esse projeto segue a especificação [@all-contributors](https://github.com/all-contributors/all-contributors). Contribuições de todas as formas são bem vindas!
 
 Por favor, depois de contribuir de qualquer forma, [chame o bot @all-contributors](https://github.com/Uno-Online/uno-backend/pull/41#issuecomment-1481839393) em qualquer issue ou PR e se adicione nesta seção de contribuidores!

@@ -1,4 +1,5 @@
-version: '3'
+version: '3.7'
+
 services:
   app:
     build: .
@@ -10,16 +11,20 @@ services:
   db:
     image: mysql:8
     restart: always
-    command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: uno
       MYSQL_ROOT_PASSWORD: password
     ports:
       - '3306:3306'
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping']
+      interval: 10s
+      timeout: 30s
   prisma:
     build: .
-    command: yarn prisma migrate dev
+    command: sh -c "yarn prisma db push --skip-generate && yarn seed"
     environment:
       DATABASE_URL: mysql://root:password@db:3306/uno
     depends_on:
-      - db
+      db:
+        condition: service_healthy
