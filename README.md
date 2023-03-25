@@ -55,13 +55,14 @@ $ ts-node src/seed/cards.seed.ts
 ...
 
 
-<<<<<<< HEAD
-=======
+# <<<<<<< HEAD
+
 ## Contribuindo com o projeto
 
 ...
 
->>>>>>> ee83c28 (merging readme)
+> > > > > > > ee83c28 (merging readme)
+
 ## Contribuidores ✨
 
 Muito obrigado a todas essas pessoas maravilhosas! ([emojis?](https://allcontributors.org/docs/en/emoji-key)):
