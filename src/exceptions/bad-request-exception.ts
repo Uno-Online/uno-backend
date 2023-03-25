@@ -2,7 +2,7 @@ import { StatusCode } from '../constants';
 import HttpException from './http-exception';
 
 /**
- * Permissão caso o usuário tenha enviado algo não esperado pelo request
+ * Exceção caso o usuário tenha enviado algo não esperado pelo request
  * Exemplo: quando a validação feita pelo zod falha
  * */
 class BadRequestException extends HttpException {

@@ -8,6 +8,17 @@
 
 [![Discord](https://img.shields.io/badge/-Discord-7289DA?logo=discord&logoColor=ffffff&style=flat-square)](https://discord.gg/7wqrRq53)
 
+## Conteúdo
+
+- [Instalando dependências](#instalando-dependências)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Instalação de dependências com npm](#instalação-de-dependências-com-npm)
+  - [Instalação de dependências com yarn](#instalação-de-dependências-com-yarn)
+- [Iniciando o banco de dados com Docker Compose 🐳](#iniciando-o-banco-de-dados-com-docker-compose-)
+  - [Passo a passo](#passo-a-passo)
+- [Contribuindo com o projeto](#contribuindo-com-o-projeto)
+- [Contribuidores ✨](#contribuidores-)
+
 ## Instalando dependências
 
 ### Pré-requisitos

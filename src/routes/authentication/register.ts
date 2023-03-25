@@ -1,16 +1,19 @@
 import { Prisma } from '@prisma/client';
 import { randomBytes } from 'crypto';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import { prisma } from '../../prisma';
 import { registerValidationSchema } from './register.validation';
 import { SALT_ROUNDS } from '../../constants';
 import { CookieKey } from '../../constants/cookie-key';
 import { JwtService } from '../../services';
-import UniqueConstraintViolation from '../../exceptions/unique-constraint-violation';
 import { BadRequestException } from '../../exceptions';
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const genEmail = () =>
     new Promise<string>((resolve, reject) => {
       randomBytes(85, (err, data) => {
@@ -61,12 +64,10 @@ export const register = async (req: Request, res: Response) => {
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === 'P2002') {
-        throw new UniqueConstraintViolation('email already in use');
+        throw new BadRequestException('email already in use');
       }
     }
-    if (err instanceof Error) {
-      throw new BadRequestException(err);
-    }
-    throw new BadRequestException('something went wrong');
+
+    next(err);
   }
 };
