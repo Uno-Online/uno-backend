@@ -1,67 +1,106 @@
 # UNO Backend
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [Documentação](https://documenter.getpostman.com/view/13271893/2s93RMVvtQ)
 
-## Conteúdo
+## Índice
 
+- [Como clonar o repositório](#como-clonar-o-repositório)
 - [Instalando dependências](#instalando-dependências)
   - [Pré-requisitos](#pré-requisitos)
   - [Instalação de dependências com npm](#instalação-de-dependências-com-npm)
   - [Instalação de dependências com yarn](#instalação-de-dependências-com-yarn)
 - [Iniciando o banco de dados com Docker Compose 🐳](#iniciando-o-banco-de-dados-com-docker-compose-)
-  - [Passo a passo](#passo-a-passo)
-- [Contribuindo com o projeto](#contribuindo-com-o-projeto)
+- [Passo a passo](#passo-a-passo)
 - [Contribuidores ✨](#contribuidores-)
+
+## Como clonar o repositório
+
+Para começar, você precisará ter o Git instalado na sua máquina. Você pode baixá-lo [aqui](https://git-scm.com/downloads).
+
+Em seguida, siga os passos abaixo para clonar o repositório:
+
+1. Abra o seu terminal.
+2. Navegue até o diretório em que deseja clonar o repositório usando o comando `cd`.
+3. Digite o seguinte comando para clonar o repositório:
+
+```
+git clone https://github.com/Uno-Online/uno-backend.git
+```
+
+Isso irá criar uma cópia do repositório no diretório atual do seu terminal.
+
+4. Se você quiser clonar o repositório para um diretório com um nome diferente, adicione o nome do diretório após o comando `git clone`. Por exemplo:
+
+```
+git clone https://github.com/Uno-Online/uno-backend.git nome-do-diretorio
+```
+
+Isso irá criar um novo diretório chamado `nome-do-diretorio` e clonar o repositório dentro dele.
+
+5. Agora que você clonou o repositório, você pode trabalhar nele na sua máquina local.
+
+Para atualizar o repositório com as mudanças mais recentes do repositório remoto, use o comando `git pull`. Para enviar suas alterações para o repositório remoto, use o comando `git push`.
+
+Antes de começar a trabalhar no código, é uma boa prática criar uma nova branch para o seu trabalho usando o comando `git checkout -b nome-da-sua-branch`. Isso garantirá que você não está trabalhando na branch principal do repositório e ajudará a organizar o seu trabalho.
+
+Para mais informações sobre o uso do Git, consulte a documentação oficial [aqui](https://git-scm.com/doc).
+(Documentação)[https://documenter.getpostman.com/view/13271893/2s93RMVvtQ]
 
 ## Instalando dependências
 
-Basta rodar:
+### Pré-requisitos
+
+Antes de instalar as dependências, você precisa ter o Node.js instalado em sua máquina. Você pode baixar a versão mais recente do Node.js em [https://nodejs.org](https://nodejs.org).
+
+### Instalação de dependências com npm
+
+Para instalar as dependências de um projeto usando o npm, abra um terminal na pasta raiz do projeto e execute o seguinte comando:
 
 ```
 npm install
 ```
 
-Ou, com `yarn`:
+Este comando irá instalar todas as dependências listadas no arquivo `package.json` na pasta `node_modules`.
+
+### Instalação de dependências com yarn
+
+Para instalar as dependências de um projeto usando o yarn, abra um terminal na pasta raiz do projeto e execute o seguinte comando:
 
 ```
 yarn
 ```
 
-## Semeando o banco
+Este comando irá instalar todas as dependências listadas no arquivo `package.json` na pasta `node_modules`.
 
-Para criar as 108 cartas base do jogo, você deve semear o banco de dados.
-Basta rodar:
+## Iniciando o banco de dados com Docker Compose 🐳
+
+Para iniciar o MySQL com o Docker Compose, é necessário ter o Docker instalado na máquina. Se você não tem o Docker instalado, siga as instruções de instalação em [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/).
+
+### Passo a passo
+
+Abra um terminal na raiz do projeto, onde o arquivo `docker-compose.yml` está localizado.
+
+Execute o seguinte comando para iniciar o serviço:
 
 ```
-yarn seed
+docker-compose up -d prisma
 ```
 
-Você verá algo como:
+Este comando irá iniciar o serviço de instalação do MySQL em background.
+
+Quando o comando termminar, você pode verificar se o banco de dados está em execução:
 
 ```
-yarn run v1.22.19
-$ ts-node src/seed/cards.seed.ts
-[01:02:11.576] INFO (64672): Apagando todas as cartas existentes...
-[01:02:11.611] INFO (64672): Criando novas cartas...
-[01:02:11.620] INFO (64672): Criadas 108 novas cartas.
-✨  Done in 0.97s.
+docker ps
 ```
 
-## Contribuindo com o projeto
-
-...
-
-
-# <<<<<<< HEAD
-
-## Contribuindo com o projeto
-
-...
-
-> > > > > > > ee83c28 (merging readme)
+Este comando irá exibir todos os contêineres em execução. O contêiner do MySQL deve estar listado.
 
 ## Contribuidores ✨
 
@@ -85,6 +124,6 @@ Muito obrigado a todas essas pessoas maravilhosas! ([emojis?](https://allcontrib
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-Esse projeto segue a especificação [@all-contributors](https://github.com/all-contributors/all-contributors). Contribuições de todas as formas são bem vindas! 
+Esse projeto segue a especificação [@all-contributors](https://github.com/all-contributors/all-contributors). Contribuições de todas as formas são bem vindas!
 
 Por favor, depois de contribuir de qualquer forma, [chame o bot @all-contributors](https://github.com/Uno-Online/uno-backend/pull/41#issuecomment-1481839393) em qualquer issue ou PR e se adicione nesta seção de contribuidores!
