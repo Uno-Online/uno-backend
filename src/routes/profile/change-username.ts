@@ -10,7 +10,9 @@ export const changeUsername = async (
   const body = usernameValidationSchema.safeParse(req.body);
 
   if (!body.success) {
-    return res.status(400).json({ success: false, message: 'Invalid request body' });
+    return res
+      .status(400)
+      .json({ success: false, message: 'Invalid request body' });
   }
 
   const { data } = body;

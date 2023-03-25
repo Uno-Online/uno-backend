@@ -29,7 +29,7 @@ export const login = async (req: Request, res: Response) => {
 
     await prisma.userSession.upsert({
       where: {
-        id: user.id
+        id: user.id,
       },
       create: {
         token,
@@ -37,7 +37,7 @@ export const login = async (req: Request, res: Response) => {
       },
       update: {
         token,
-      }
+      },
     });
 
     res.cookie(CookieKey.AuthToken, token, {
