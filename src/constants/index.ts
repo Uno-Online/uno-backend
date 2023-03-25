@@ -14,4 +14,4 @@ export const SALT_ROUNDS = 12;
 export const AVATAR_SVG_URL = 'https://api.dicebear.com/5.x/fun-emoji/svg';
 
 // Valor que define o tamanho da seed
-export const SEED_SIZE = 100000;
+export const SEED_LENGTH = 100000;
