@@ -1,3 +1,6 @@
+export { CookieKey } from './cookie-key';
+export { StatusCode } from './status-code';
+
 // Número de cartas +2 por cor
 export const DRAW_TWO_CARDS_PER_COLOR = 2;
 
