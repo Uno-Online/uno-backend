@@ -8,49 +8,15 @@
 
 [Documentação](https://documenter.getpostman.com/view/13271893/2s93RMVvtQ)
 
-## Índice
+## Conteúdo
 
-- [Como clonar o repositório](#como-clonar-o-repositório)
 - [Instalando dependências](#instalando-dependências)
   - [Pré-requisitos](#pré-requisitos)
   - [Instalação de dependências com npm](#instalação-de-dependências-com-npm)
   - [Instalação de dependências com yarn](#instalação-de-dependências-com-yarn)
 - [Iniciando o banco de dados com Docker Compose 🐳](#iniciando-o-banco-de-dados-com-docker-compose-)
-- [Passo a passo](#passo-a-passo)
+  - [Passo a passo](#passo-a-passo)
 - [Contribuidores ✨](#contribuidores-)
-
-## Como clonar o repositório
-
-Para começar, você precisará ter o Git instalado na sua máquina. Você pode baixá-lo [aqui](https://git-scm.com/downloads).
-
-Em seguida, siga os passos abaixo para clonar o repositório:
-
-1. Abra o seu terminal.
-2. Navegue até o diretório em que deseja clonar o repositório usando o comando `cd`.
-3. Digite o seguinte comando para clonar o repositório:
-
-```
-git clone https://github.com/Uno-Online/uno-backend.git
-```
-
-Isso irá criar uma cópia do repositório no diretório atual do seu terminal.
-
-4. Se você quiser clonar o repositório para um diretório com um nome diferente, adicione o nome do diretório após o comando `git clone`. Por exemplo:
-
-```
-git clone https://github.com/Uno-Online/uno-backend.git nome-do-diretorio
-```
-
-Isso irá criar um novo diretório chamado `nome-do-diretorio` e clonar o repositório dentro dele.
-
-5. Agora que você clonou o repositório, você pode trabalhar nele na sua máquina local.
-
-Para atualizar o repositório com as mudanças mais recentes do repositório remoto, use o comando `git pull`. Para enviar suas alterações para o repositório remoto, use o comando `git push`.
-
-Antes de começar a trabalhar no código, é uma boa prática criar uma nova branch para o seu trabalho usando o comando `git checkout -b nome-da-sua-branch`. Isso garantirá que você não está trabalhando na branch principal do repositório e ajudará a organizar o seu trabalho.
-
-Para mais informações sobre o uso do Git, consulte a documentação oficial [aqui](https://git-scm.com/doc).
-(Documentação)[https://documenter.getpostman.com/view/13271893/2s93RMVvtQ]
 
 ## Instalando dependências
 
@@ -101,17 +67,6 @@ docker ps
 ```
 
 Este comando irá exibir todos os contêineres em execução. O contêiner do MySQL deve estar listado.
-<<<<<<< HEAD
-
-# <<<<<<< HEAD
-
-## Contribuindo com o projeto
-
-...
-
-> > > > > > > ee83c28 (merging readme)
-=======
->>>>>>> be857a9 (docs: adding discord badge)
 
 ## Contribuidores ✨
 
