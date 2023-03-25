@@ -6,7 +6,7 @@ services:
       - '3000:3000'
     depends_on:
       - db
-      - prisma
+      # - prisma
   db:
     image: mysql:8
     restart: always
@@ -16,11 +16,11 @@ services:
       MYSQL_ROOT_PASSWORD: password
     ports:
       - '3306:3306'
-  prisma:
-    image: prismagraphql/prisma:latest
-    command: prisma migrate deploy && prisma generate
-    environment:
-      PRISMA_DATABASE_URL: mysql://root:password@db:3306/uno
-      PRISMA_CLIENT_ENGINE_TYPE: binary
-    depends_on:
-      - db
+  # prisma:
+  #   image: prismagraphql/prisma:latest
+  #   command: prisma migrate deploy && prisma generate
+  #   environment:
+  #     PRISMA_DATABASE_URL: mysql://root:password@db:3306/uno
+  #     PRISMA_CLIENT_ENGINE_TYPE: binary
+  #   depends_on:
+  #     - db
