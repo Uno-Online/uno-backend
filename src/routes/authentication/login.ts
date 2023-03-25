@@ -27,6 +27,19 @@ export const login = async (req: Request, res: Response) => {
   if (await bcrypt.compare(data.password, user.passwordHash!)) {
     const token = JwtService.encrypt({ userId: user.id });
 
+    await prisma.userSession.upsert({
+      where: {
+        id: user.id
+      },
+      create: {
+        token,
+        userId: user.id,
+      },
+      update: {
+        token,
+      }
+    });
+
     res.cookie(CookieKey.AuthToken, token, {
       httpOnly: true,
     });
