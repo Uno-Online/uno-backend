@@ -11,7 +11,10 @@ export const authMiddleware = async (
 ) => {
   const { [CookieKey.AuthToken]: authToken } = req.cookies;
 
-  if (!req.url.startsWith('/authentication' && '/avatars')) {
+  if (
+    !req.url.startsWith('/authentication') &&
+    !req.url.startsWith('/avatars')
+  ) {
     try {
       const payload = JwtService.decrypt<{ userId: number }>(authToken);
 
