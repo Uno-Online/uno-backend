@@ -1,5 +1,6 @@
 import { RoomState } from '@prisma/client';
 import { Response } from 'express';
+import { BadRequestException } from '../../exceptions';
 import { prisma } from '../../prisma';
 import type { RequestWithUser } from '../../types/request-with-user';
 import { paramsPaginationValidation } from './params-pagination.validation';
@@ -11,7 +12,7 @@ export const getRooms = async (req: RequestWithUser, res: Response) => {
   const params = paramsPaginationValidation.safeParse(req.query);
 
   if (!params.success) {
-    return res.status(400).json({ success: false, message: 'Invalid param' });
+    throw new BadRequestException('Invalid param');
   }
 
   const take = params.data.take ?? 50;
