@@ -101,6 +101,7 @@ docker ps
 ```
 
 Este comando irá exibir todos os contêineres em execução. O contêiner do MySQL deve estar listado.
+<<<<<<< HEAD
 
 # <<<<<<< HEAD
 
@@ -109,6 +110,8 @@ Este comando irá exibir todos os contêineres em execução. O contêiner do My
 ...
 
 > > > > > > > ee83c28 (merging readme)
+=======
+>>>>>>> be857a9 (docs: adding discord badge)
 
 ## Contribuidores ✨
 
