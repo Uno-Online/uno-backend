@@ -4,7 +4,11 @@ import { RequestWithUser } from '../../types/request-with-user';
 import { usernameValidationSchema } from './username.validation';
 import { BadRequestException } from '../../exceptions';
 
-export const changeUsername = async (req: RequestWithUser, res: Response, next: NextFunction) => {
+export const changeUsername = async (
+  req: RequestWithUser,
+  res: Response,
+  next: NextFunction
+) => {
   const body = usernameValidationSchema.safeParse(req.body);
 
   if (!body.success) {
