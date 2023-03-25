@@ -7,6 +7,7 @@ import { SocketServer } from './socket-server';
 import { router } from './routes';
 import errorHandlingMiddleware from './middlewares/error-handling-middleware';
 import { authMiddleware } from './middlewares/auth.middleware';
+import { logger } from './logger';
 
 const app = express();
 
@@ -20,4 +21,4 @@ const server = http.createServer(app);
 
 SocketServer.init(server);
 
-server.listen(process.env.PORT || 3000);
+server.listen(process.env.PORT || 3000, () => logger.info('Server started'));
