@@ -1,4 +1,5 @@
-import HttpException, { StatusCode } from '../http-exception';
+import { StatusCode } from '../../constants';
+import HttpException from '../http-exception';
 
 describe('Http exception class', () => {
   const statusCode = 0 as StatusCode;
