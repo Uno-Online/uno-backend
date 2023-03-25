@@ -1,5 +1,6 @@
 # UNO Backend
 
+<div style="display: flex;">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
@@ -7,6 +8,8 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Discord](https://img.shields.io/badge/-Discord-7289DA?logo=discord&logoColor=ffffff&style=flat-square)](https://discord.gg/7wqrRq53)
+
+</div>
 
 ## Conteúdo
 
@@ -68,10 +71,6 @@ docker ps
 ```
 
 Este comando irá exibir todos os contêineres em execução. O contêiner do MySQL deve estar listado.
-
-## Contribuindo com o projeto
-
-...
 
 ## Contribuidores ✨
 
