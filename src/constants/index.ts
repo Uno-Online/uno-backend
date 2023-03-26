@@ -1,8 +1,7 @@
 export { CookieKey } from './cookie-key';
 export { StatusCode } from './status-code';
-
-// Número de cartas +2 por cor
-export const DRAW_TWO_CARDS_PER_COLOR = 2;
+// Número de cartas especiais por cor
+export const SPECIAL_CARDS_PER_COLOR = 2;
 
 // Número de cartas +4 no baralho
 export const DRAW_FOUR_CARDS_IN_DECK = 4;

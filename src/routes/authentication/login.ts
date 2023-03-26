@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { Response, Request } from 'express';
 import { CookieKey } from '../../constants/cookie-key';
+import { BadRequest } from '../../exceptions';
 import { prisma } from '../../prisma';
 import { JwtService } from '../../services';
 import { loginValidationSchema } from './login.validation';
@@ -24,7 +25,10 @@ export const login = async (req: Request, res: Response) => {
     return;
   }
 
-  if (await bcrypt.compare(data.password, user.passwordHash!)) {
+  if (
+    user?.passwordHash &&
+    (await bcrypt.compare(data.password, user.passwordHash))
+  ) {
     const token = JwtService.encrypt({ userId: user.id });
 
     await prisma.userSession.create({
@@ -41,6 +45,6 @@ export const login = async (req: Request, res: Response) => {
       success: true,
     });
   } else {
-    res.status(400).send('invalid username or password');
+    throw new BadRequest({ msg: 'invalid username or password' });
   }
 };

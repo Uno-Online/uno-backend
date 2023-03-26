@@ -7,7 +7,7 @@ import { registerValidationSchema } from './register.validation';
 import { SALT_ROUNDS } from '../../constants';
 import { CookieKey } from '../../constants/cookie-key';
 import { JwtService } from '../../services';
-import { BadRequestException } from '../../exceptions';
+import { BadRequest } from '../../exceptions';
 
 export const register = async (
   req: Request,
@@ -21,17 +21,9 @@ export const register = async (
         if (data) resolve(`${data.toString('hex')}@p.com`);
       });
     });
-
-  const body = registerValidationSchema.safeParse(req.body);
-
-  if (!body.success) {
-    res.status(400).send('Invalid register request body');
-    return;
-  }
-
-  const { data } = body;
-
   try {
+    const data = registerValidationSchema.parse(req.body);
+
     const isGuest = !(data.password && data.email);
     const user = await prisma.user.create({
       data: {
@@ -64,10 +56,11 @@ export const register = async (
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === 'P2002') {
-        throw new BadRequestException('email already in use');
+        throw new BadRequest({
+          msg: 'email already in use',
+        });
       }
     }
-
     next(err);
   }
 };

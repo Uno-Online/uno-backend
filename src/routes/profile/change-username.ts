@@ -2,7 +2,7 @@ import { NextFunction, Response } from 'express';
 import { prisma } from '../../prisma';
 import { RequestWithUser } from '../../types/request-with-user';
 import { usernameValidationSchema } from './username.validation';
-import { BadRequestException } from '../../exceptions';
+import { BadRequest } from '../../exceptions';
 
 export const changeUsername = async (
   req: RequestWithUser,
@@ -12,7 +12,7 @@ export const changeUsername = async (
   const body = usernameValidationSchema.safeParse(req.body);
 
   if (!body.success) {
-    throw new BadRequestException('Invalid request body');
+    throw new BadRequest('Invalid request body');
   }
 
   const { data } = body;
@@ -35,7 +35,7 @@ export const changeUsername = async (
     });
 
     if (usernameInUse >= 1) {
-      throw new BadRequestException('Username is already being used');
+      throw new BadRequest('Username is already being used');
     }
 
     await prisma.user.update({
