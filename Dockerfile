@@ -10,6 +10,7 @@ COPY . .
 
 ENV NODE_ENV production
 
+RUN yarn prisma generate
 RUN yarn build
 
 EXPOSE 3000

@@ -11,6 +11,7 @@
 ## Índice
 
 - [Como clonar o repositório](#como-clonar-o-repositório)
+- [Criando um arquivo .env](#criando-um-arquivo-env)
 - [Instalando dependências](#instalando-dependências)
   - [Pré-requisitos](#pré-requisitos)
   - [Instalação de dependências com npm](#instalação-de-dependências-com-npm)
@@ -50,7 +51,16 @@ Para atualizar o repositório com as mudanças mais recentes do repositório rem
 Antes de começar a trabalhar no código, é uma boa prática criar uma nova branch para o seu trabalho usando o comando `git checkout -b nome-da-sua-branch`. Isso garantirá que você não está trabalhando na branch principal do repositório e ajudará a organizar o seu trabalho.
 
 Para mais informações sobre o uso do Git, consulte a documentação oficial [aqui](https://git-scm.com/doc).
-(Documentação)[https://documenter.getpostman.com/view/13271893/2s93RMVvtQ]
+
+## Criando um arquivo .env
+
+Crie uma cópia do arquivo `.env.example` com o nome `.env`. Este arquivo contém variáveis de ambiente que serão usadas pela aplicação.
+
+Você pode criar uma cópia do arquivo no terminal, usando o seguinte comando:
+
+```
+cp .env.example .env
+```
 
 ## Instalando dependências
 

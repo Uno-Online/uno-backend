@@ -10,11 +10,34 @@ module.exports = {
     sourceType: 'module',
     project: ['./tsconfig.json', './tsconfig.eslint.json'],
   },
-  plugins: ['@typescript-eslint'],
+  overrides: [
+    {
+      files: ['src/**/__test__/*'],
+      rules: {
+        'check-file/folder-naming-convention': 'off',
+      },
+    },
+  ],
+  plugins: ['@typescript-eslint', 'check-file'],
   rules: {
     'import/prefer-default-export': 'off',
     'arrow-body-style': 'off',
     'class-methods-use-this': 'off',
     'no-console': 'warn',
+    'check-file/folder-naming-convention': [
+      'error',
+      {
+        'src/**/': 'KEBAB_CASE',
+      },
+    ],
+    'check-file/filename-naming-convention': [
+      'error',
+      {
+        '**/*.{js,ts}': 'KEBAB_CASE',
+      },
+      {
+        ignoreMiddleExtensions: true,
+      },
+    ],
   },
 };
