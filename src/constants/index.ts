@@ -1,3 +1,5 @@
+export { CookieKey } from './cookie-key';
+export { StatusCode } from './status-code';
 // Número de cartas especiais por cor
 export const SPECIAL_CARDS_PER_COLOR = 2;
 
