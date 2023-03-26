@@ -62,6 +62,16 @@ Você pode criar uma cópia do arquivo no terminal, usando o seguinte comando:
 cp .env.example .env
 ```
 
+## Criando um arquivo .env
+
+Crie uma cópia do arquivo `.env.example` com o nome `.env`. Este arquivo contém variáveis de ambiente que serão usadas pela aplicação.
+
+Você pode criar uma cópia do arquivo no terminal, usando o seguinte comando:
+
+```
+cp .env.example .env
+```
+
 ## Instalando dependências
 
 ### Pré-requisitos
