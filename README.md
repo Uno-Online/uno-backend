@@ -1,7 +1,7 @@
 # UNO Backend
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [Documentação](https://documenter.getpostman.com/view/13271893/2s93RMVvtQ)
@@ -124,6 +124,7 @@ Muito obrigado a todas essas pessoas maravilhosas! ([emojis?](https://allcontrib
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/deyvis0n"><img src="https://avatars.githubusercontent.com/u/82903398?v=4?s=100" width="100px;" alt="deyvis0n"/><br /><sub><b>deyvis0n</b></sub></a><br /><a href="https://github.com/Uno-Online/uno-backend/commits?author=deyvis0n" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://kaolhou.dev"><img src="https://avatars.githubusercontent.com/u/71137653?v=4?s=100" width="100px;" alt="André Mendes da Rocha"/><br /><sub><b>André Mendes da Rocha</b></sub></a><br /><a href="https://github.com/Uno-Online/uno-backend/commits?author=Kaolhou" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/rosousa"><img src="https://avatars.githubusercontent.com/u/101147637?v=4?s=100" width="100px;" alt="Rodolfo Sousa"/><br /><sub><b>Rodolfo Sousa</b></sub></a><br /><a href="https://github.com/Uno-Online/uno-backend/commits?author=rosousa" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/adrianoaraujocoelho"><img src="https://avatars.githubusercontent.com/u/80139085?v=4?s=100" width="100px;" alt="Adriano"/><br /><sub><b>Adriano</b></sub></a><br /><a href="https://github.com/Uno-Online/uno-backend/commits?author=adrianoaraujocoelho" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
