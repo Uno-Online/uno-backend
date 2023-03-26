@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
 import { randomBytes } from 'crypto';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import { prisma } from '../../prisma';
 import { registerValidationSchema } from './register.validation';
@@ -9,7 +9,11 @@ import { CookieKey } from '../../constants/cookie-key';
 import { JwtService } from '../../services';
 import { BadRequest } from '../../exceptions';
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const genEmail = () =>
     new Promise<string>((resolve, reject) => {
       randomBytes(85, (err, data) => {
@@ -54,13 +58,9 @@ export const register = async (req: Request, res: Response) => {
       if (err.code === 'P2002') {
         throw new BadRequest({
           msg: 'email already in use',
-          data: err,
         });
       }
     }
-    if (err instanceof Error) {
-      throw new BadRequest(err);
-    }
-    throw new BadRequest('something went wrong');
+    next(err);
   }
 };
