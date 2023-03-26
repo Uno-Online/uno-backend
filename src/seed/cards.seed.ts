@@ -2,7 +2,7 @@ import { CardColor, CardSymbol, Prisma } from '@prisma/client';
 import {
   COLOR_CHANGING_CARDS_IN_DECK,
   DRAW_FOUR_CARDS_IN_DECK,
-  DRAW_TWO_CARDS_PER_COLOR,
+  SPECIAL_CARDS_PER_COLOR,
 } from '../constants';
 import { logger } from '../logger';
 import { prisma } from '../prisma';
@@ -36,7 +36,7 @@ const cards = Object.values(CardColor).reduce<Prisma.CardCreateManyInput[]>(
         ...prev,
         ...coloredCards,
         ...specialColoredSymbols.flatMap((symbol) =>
-          createSymbolCardList(DRAW_TWO_CARDS_PER_COLOR, next, symbol)
+          createSymbolCardList(SPECIAL_CARDS_PER_COLOR, next, symbol)
         ),
       ];
     }

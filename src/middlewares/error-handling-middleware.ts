@@ -1,21 +1,16 @@
-import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import { ErrorRequestHandler, Request, Response } from 'express';
 import HttpException from '../exceptions/http-exception';
 
 const errorHandlingMiddleware = (
   err: ErrorRequestHandler,
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   if (err instanceof HttpException) {
-    res.status(err.status).send(JSON.parse(err.message));
-
-    return next();
+    return res.status(err.status).json(err.message);
   }
 
-  res.sendStatus(500);
-
-  return next();
+  return res.sendStatus(500);
 };
 
 export default errorHandlingMiddleware;

@@ -1,4 +1,4 @@
-import BadRequestException from '../bad-request-exception';
+import BadRequestException from '../bad-request.exception';
 import HttpException from '../http-exception';
 
 describe('Bad Request Exception class', () => {

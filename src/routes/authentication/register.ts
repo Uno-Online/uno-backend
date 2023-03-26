@@ -7,8 +7,7 @@ import { registerValidationSchema } from './register.validation';
 import { SALT_ROUNDS } from '../../constants';
 import { CookieKey } from '../../constants/cookie-key';
 import { JwtService } from '../../services';
-import UniqueConstraintViolation from '../../exceptions/unique-constraint-violation';
-import { BadRequestException } from '../../exceptions';
+import { BadRequest } from '../../exceptions';
 
 export const register = async (req: Request, res: Response) => {
   const genEmail = () =>
@@ -18,17 +17,9 @@ export const register = async (req: Request, res: Response) => {
         if (data) resolve(`${data.toString('hex')}@p.com`);
       });
     });
-
-  const body = registerValidationSchema.safeParse(req.body);
-
-  if (!body.success) {
-    res.status(400).send('Invalid register request body');
-    return;
-  }
-
-  const { data } = body;
-
   try {
+    const data = registerValidationSchema.parse(req.body);
+
     const isGuest = !(data.password && data.email);
     const user = await prisma.user.create({
       data: {
@@ -60,12 +51,15 @@ export const register = async (req: Request, res: Response) => {
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === 'P2002') {
-        throw new UniqueConstraintViolation('email already in use');
+        throw new BadRequest({
+          msg: 'email already in use',
+          data: err,
+        });
       }
     }
     if (err instanceof Error) {
-      throw new BadRequestException(err);
+      throw new BadRequest(err);
     }
-    throw new BadRequestException('something went wrong');
+    throw new BadRequest('something went wrong');
   }
 };
