@@ -35,6 +35,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "alanhrc",
+      "name": "Alan Henrique",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45830608?v=4",
+      "profile": "https://github.com/alanhrc",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
