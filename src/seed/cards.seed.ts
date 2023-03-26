@@ -61,8 +61,15 @@ const cards = Object.values(CardColor).reduce<Prisma.CardCreateManyInput[]>(
 /**
  * Gera todas as 108 cartas do Uno
  * */
-async function main() {
+export default async function createCardsSeed() {
   await prisma.$transaction(async (tx) => {
+    const count = await tx.card.count();
+
+    if (count === 108) {
+      logger.info('Cartas já criadas. Ignorando...');
+      return;
+    }
+
     logger.info('Apagando todas as cartas existentes...');
     await tx.card.deleteMany();
 
@@ -70,8 +77,7 @@ async function main() {
     await tx.card.createMany({
       data: cards,
     });
+
     logger.info(`Criadas ${cards.length} novas cartas.`);
   });
 }
-
-main();
