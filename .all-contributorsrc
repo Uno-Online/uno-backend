@@ -53,6 +53,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "pedro3g",
+      "name": "Pedro Henrique",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30221184?v=4",
+      "profile": "https://pedro3g.dev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
