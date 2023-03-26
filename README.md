@@ -11,7 +11,7 @@
 ## Índice
 
 - [Como clonar o repositório](#como-clonar-o-repositório)
-- [Criando um arquivo .env](#criando-um-arquivo-.env)
+- [Criando um arquivo .env](#criando-um-arquivo-env)
 - [Instalando dependências](#instalando-dependências)
   - [Pré-requisitos](#pré-requisitos)
   - [Instalação de dependências com npm](#instalação-de-dependências-com-npm)
