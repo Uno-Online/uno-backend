@@ -11,6 +11,7 @@
 ## Índice
 
 - [Como clonar o repositório](#como-clonar-o-repositório)
+- [Criando um arquivo .env](#criando-um-arquivo-.env)
 - [Instalando dependências](#instalando-dependências)
   - [Pré-requisitos](#pré-requisitos)
   - [Instalação de dependências com npm](#instalação-de-dependências-com-npm)
@@ -51,6 +52,16 @@ Antes de começar a trabalhar no código, é uma boa prática criar uma nova bra
 
 Para mais informações sobre o uso do Git, consulte a documentação oficial [aqui](https://git-scm.com/doc).
 (Documentação)[https://documenter.getpostman.com/view/13271893/2s93RMVvtQ]
+
+## Criando um arquivo .env
+
+Crie uma cópia do arquivo `.env.example` com o nome `.env`. Este arquivo contém variáveis de ambiente que serão usadas pela aplicação.
+
+Você pode criar uma cópia do arquivo no terminal, usando o seguinte comando:
+
+```
+cp .env.example .env
+```
 
 ## Instalando dependências
 
