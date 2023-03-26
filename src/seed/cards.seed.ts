@@ -58,6 +58,9 @@ const cards = Object.values(CardColor).reduce<Prisma.CardCreateManyInput[]>(
   []
 );
 
+/**
+ * Gera todas as 108 cartas do Uno
+ * */
 async function main() {
   await prisma.$transaction(async (tx) => {
     logger.info('Apagando todas as cartas existentes...');

@@ -1,9 +1,14 @@
 import { Response, NextFunction } from 'express';
 import { CookieKey } from '../constants/cookie-key';
+import ForbiddenException from '../exceptions/forbidden.exception';
 import { prisma } from '../prisma';
 import { JwtService } from '../services';
 import type { RequestWithUser } from '../types/request-with-user';
 
+/**
+ * Middleware para validar o cookie `auth_token`
+ * Se a validação ocorrer com sucesso, o `req.user` irá conter os dados do usuário autorizado
+ * */
 export const authMiddleware = async (
   req: RequestWithUser,
   res: Response,
@@ -11,7 +16,10 @@ export const authMiddleware = async (
 ) => {
   const { [CookieKey.AuthToken]: authToken } = req.cookies;
 
-  if (!req.url.startsWith('/authentication')) {
+  if (
+    !req.url.startsWith('/authentication') &&
+    !req.url.startsWith('/avatars')
+  ) {
     try {
       const payload = JwtService.decrypt<{ userId: number }>(authToken);
 
@@ -40,10 +48,11 @@ export const authMiddleware = async (
         return;
       }
 
-      res.json({ success: false, message: 'no user found with this token' });
+      throw new ForbiddenException('no user found with this token');
     } catch (err) {
-      res.json({ success: false, message: 'invalid jwt' });
-      return;
+      // res.json({ success: false, message: 'invalid jwt' });
+      // return;
+      next(err);
     }
   }
 

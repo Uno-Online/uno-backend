@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native"]
 }
 
 datasource db {
@@ -13,6 +14,7 @@ model User {
   email         String?       @unique
   passwordHash  String?
   isGuest       Boolean
+  avatarSeed    Int
   sessions      UserSession[]
   rooms         Room[]
   roomRounds    RoomRound[]

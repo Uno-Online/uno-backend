@@ -25,6 +25,7 @@ export const register = async (req: Request, res: Response) => {
       data: {
         username: data.username,
         email: data.email || (await genEmail()),
+        avatarSeed: data.avatarSeed,
         passwordHash: isGuest
           ? undefined
           : await bcrypt.hash(data.password!, SALT_ROUNDS),

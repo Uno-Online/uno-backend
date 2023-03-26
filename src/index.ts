@@ -5,7 +5,7 @@ import express from 'express';
 import http from 'http';
 import { SocketServer } from './socket-server';
 import { router } from './routes';
-import errorHandlingMiddleware from './middlewares/error-handling-middleware';
+import errorHandlingMiddleware from './middlewares/error-handling.middleware';
 import { authMiddleware } from './middlewares/auth.middleware';
 import { logger } from './logger';
 
