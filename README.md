@@ -51,7 +51,6 @@ Para atualizar o repositório com as mudanças mais recentes do repositório rem
 Antes de começar a trabalhar no código, é uma boa prática criar uma nova branch para o seu trabalho usando o comando `git checkout -b nome-da-sua-branch`. Isso garantirá que você não está trabalhando na branch principal do repositório e ajudará a organizar o seu trabalho.
 
 Para mais informações sobre o uso do Git, consulte a documentação oficial [aqui](https://git-scm.com/doc).
-(Documentação)[https://documenter.getpostman.com/view/13271893/2s93RMVvtQ]
 
 ## Criando um arquivo .env
 
