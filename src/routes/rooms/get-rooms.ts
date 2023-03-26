@@ -15,10 +15,9 @@ export const getRooms = async (req: RequestWithUser, res: Response) => {
     throw new BadRequestException('Invalid param');
   }
 
-  const take = params.data.take ?? 50;
-  const skip = params.data.skip ?? 0;
+  const [take, skip] = [Number(params.data.take), Number(params.data.skip)];
 
-  const result = await prisma.$transaction([
+  const [totalRooms, roomsResult] = await prisma.$transaction([
     prisma.room.count({
       where: {
         state: RoomState.WAITING_FOR_PLAYERS,
@@ -38,15 +37,12 @@ export const getRooms = async (req: RequestWithUser, res: Response) => {
     }),
   ]);
 
-  const totalRooms = result[0];
-
   const totalPage = totalRooms > 0 ? Math.ceil(totalRooms / take) : 1;
   const currentPage = Math.floor(skip / take) + 1;
 
-  const rooms = result[1].map((obj) => {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const { _count, ...room } = obj;
-    return Object.assign(room, { players: _count.players });
+  const rooms = roomsResult.map((obj) => {
+    const { _count: count, ...room } = obj;
+    return Object.assign(room, { players: count.players });
   });
 
   return res.json({ totalRooms, currentPage, totalPage, rooms });

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
 export const paramsPaginationValidation = z.object({
-  take: z.union([z.undefined(), z.string().regex(/^\d+$/).transform(Number)]),
-  skip: z.union([z.undefined(), z.string().regex(/^\d+$/).transform(Number)]),
+  take: z.coerce.bigint().nonnegative().default(BigInt(50)),
+  skip: z.coerce.bigint().nonnegative().default(BigInt(0)),
 });
