@@ -1,6 +1,6 @@
 import { Response, NextFunction } from 'express';
 import { CookieKey } from '../constants/cookie-key';
-import Forbidden from '../exceptions/forbidden.exception';
+import { Forbidden } from '../exceptions';
 import { prisma } from '../prisma';
 import { JwtService } from '../services';
 import type { RequestWithUser } from '../types/request-with-user';
