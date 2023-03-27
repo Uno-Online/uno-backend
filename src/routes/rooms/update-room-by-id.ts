@@ -1,7 +1,6 @@
 import { Prisma } from '@prisma/client';
 import { NextFunction, Response } from 'express';
-import { BadRequest } from '../../exceptions';
-import ForbiddenException from '../../exceptions/forbidden.exception';
+import { BadRequest, Forbidden } from '../../exceptions';
 import { prisma } from '../../prisma';
 import { RequestWithUser } from '../../types/request-with-user';
 import { paramIdValidationSchema } from './param-id.validation';
@@ -30,7 +29,7 @@ export const updateRoomNameById = async (
   }
 
   if (room.creatorId !== userId) {
-    throw new ForbiddenException('Player is not the owner of the room');
+    throw new Forbidden('Player is not the owner of the room');
   }
 
   try {

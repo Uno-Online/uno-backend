@@ -2,8 +2,7 @@ import { Response } from 'express';
 import { RequestWithUser } from '../../types/request-with-user';
 import { prisma } from '../../prisma';
 import { paramIdValidationSchema } from './param-id.validation';
-import { BadRequest } from '../../exceptions';
-import ForbiddenException from '../../exceptions/forbidden.exception';
+import { BadRequest, Forbidden } from '../../exceptions';
 
 export const deleteRoomById = async (req: RequestWithUser, res: Response) => {
   const id = paramIdValidationSchema.parse(req.params?.id);
@@ -24,7 +23,7 @@ export const deleteRoomById = async (req: RequestWithUser, res: Response) => {
   }
 
   if (room.creatorId !== userId) {
-    throw new ForbiddenException('Player is not the owner of the room');
+    throw new Forbidden('Player is not the owner of the room');
   }
 
   await prisma.$transaction(async (tx) => {

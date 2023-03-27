@@ -1,4 +1,4 @@
-import { StatusCode } from "../constants";
+import { StatusCode } from '../constants';
 
 class HttpException extends Error {
   private exceptionCode: StatusCode;

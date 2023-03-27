@@ -1,6 +1,5 @@
 import { RoomState } from '@prisma/client';
 import { Response } from 'express';
-import { BadRequest } from '../../exceptions';
 import { prisma } from '../../prisma';
 import type { RequestWithUser } from '../../types/request-with-user';
 import { paramsPaginationValidation } from './params-pagination.validation';

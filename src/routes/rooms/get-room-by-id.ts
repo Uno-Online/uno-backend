@@ -27,7 +27,7 @@ export const getRoomById = async (req: Request, res: Response) => {
   });
 
   if (!room) {
-    throw new BadRequest('Room id not fould')
+    throw new BadRequest('Room id not fould');
   }
 
   return res.json({
