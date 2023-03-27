@@ -9,13 +9,9 @@ import { paramsPaginationValidation } from './params-pagination.validation';
  * Retorna uma lista paginada de salas abertas
  * */
 export const getRooms = async (req: RequestWithUser, res: Response) => {
-  const params = paramsPaginationValidation.safeParse(req.query);
+  const data = paramsPaginationValidation.parse(req.query);
 
-  if (!params.success) {
-    throw new BadRequest('Invalid param');
-  }
-
-  const [take, skip] = [Number(params.data.take), Number(params.data.skip)];
+  const [take, skip] = [Number(data.take), Number(data.skip)];
 
   const [totalRooms, roomsResult] = await prisma.$transaction([
     prisma.room.count({

@@ -1,16 +1,18 @@
 import type { Response } from 'express';
+import { paramIdValidationSchema } from '../rooms/param-id.validation';
 import { RequestWithUser } from '../../types/request-with-user';
 import { prisma } from '../../prisma';
+import { BadRequest } from '../../exceptions';
 
 /**
  * Retorna informações buscadas de um usuário
  * */
 export const getUserById = async (req: RequestWithUser, res: Response) => {
-  const { id } = req.params;
+  const id = paramIdValidationSchema.parse(req.params?.id);
 
   const userFound = await prisma.user.findUnique({
     where: {
-      id: Number(id),
+      id,
     },
     select: {
       id: true,
@@ -19,7 +21,7 @@ export const getUserById = async (req: RequestWithUser, res: Response) => {
   });
 
   if (!userFound) {
-    return res.status(400).json({ success: false, message: 'User not found' });
+    throw new BadRequest('User not found');
   }
 
   return res.json(userFound);

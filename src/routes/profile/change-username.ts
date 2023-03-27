@@ -9,13 +9,7 @@ export const changeUsername = async (
   res: Response,
   next: NextFunction
 ) => {
-  const body = usernameValidationSchema.safeParse(req.body);
-
-  if (!body.success) {
-    throw new BadRequest('Invalid request body');
-  }
-
-  const { data } = body;
+  const data = usernameValidationSchema.parse(req.body);
 
   try {
     if (req.user?.username === data.username) {
@@ -55,6 +49,6 @@ export const changeUsername = async (
       updatedAt: req.user?.updatedAt,
     });
   } catch (err) {
-    return next(err);
+    next(err);
   }
 };

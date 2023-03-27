@@ -1,13 +1,22 @@
-import { ErrorRequestHandler, Request, Response } from 'express';
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import { ZodError } from 'zod';
 import HttpException from '../exceptions/http-exception';
 
 const errorHandlingMiddleware = (
   err: ErrorRequestHandler,
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   if (err instanceof HttpException) {
-    return res.status(err.status).json(err.message);
+    return res
+      .status(err.status)
+      .json({ success: false, message: err.message });
+  }
+  if (err instanceof ZodError) {
+    return res
+      .status(400)
+      .json({ success: false, errors: JSON.parse(err.message) });
   }
 
   return res.sendStatus(500);
