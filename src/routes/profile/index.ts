@@ -4,5 +4,5 @@ import { getUserLogged } from './get-user-logged';
 
 export const router = Router();
 
-router.put('/', changeUsername);
+router.put('/username/', changeUsername);
 router.get('/', getUserLogged);
