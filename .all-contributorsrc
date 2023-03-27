@@ -35,6 +35,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "rosousa",
+      "name": "Rodolfo Sousa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/101147637?v=4",
+      "profile": "https://github.com/rosousa",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "adrianoaraujocoelho",
+      "name": "Adriano",
+      "avatar_url": "https://avatars.githubusercontent.com/u/80139085?v=4",
+      "profile": "https://github.com/adrianoaraujocoelho",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "pedro3g",
+      "name": "Pedro Henrique",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30221184?v=4",
+      "profile": "https://pedro3g.dev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
