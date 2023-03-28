@@ -1,6 +1,6 @@
 import { Response, NextFunction } from 'express';
 import { CookieKey } from '../constants/cookie-key';
-import ForbiddenException from '../exceptions/forbidden.exception';
+import { Forbidden } from '../exceptions';
 import { prisma } from '../prisma';
 import { JwtService } from '../services';
 import type { RequestWithUser } from '../types/request-with-user';
@@ -48,7 +48,7 @@ export const authMiddleware = async (
         return;
       }
 
-      throw new ForbiddenException('no user found with this token');
+      throw new Forbidden('no user found with this token');
     } catch (err) {
       // res.json({ success: false, message: 'invalid jwt' });
       // return;

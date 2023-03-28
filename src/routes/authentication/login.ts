@@ -7,12 +7,7 @@ import { JwtService } from '../../services';
 import { loginValidationSchema } from './login.validation';
 
 export const login = async (req: Request, res: Response) => {
-  const parsed = loginValidationSchema.safeParse(req.body);
-  if (!parsed.success) {
-    res.send('invalid request body');
-    return;
-  }
-  const { data } = parsed;
+  const data = loginValidationSchema.parse(req.body);
 
   const user = await prisma.user.findUnique({
     where: {
@@ -21,8 +16,7 @@ export const login = async (req: Request, res: Response) => {
   });
 
   if (!user) {
-    res.status(400).send('invalid email or password');
-    return;
+    throw new BadRequest('invalid email or password');
   }
 
   if (
@@ -45,6 +39,6 @@ export const login = async (req: Request, res: Response) => {
       success: true,
     });
   } else {
-    throw new BadRequest({ msg: 'invalid username or password' });
+    throw new BadRequest('invalid username or password');
   }
 };
