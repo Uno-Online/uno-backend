@@ -1,17 +1,14 @@
 import type { Request, Response } from 'express';
+import { BadRequest } from '../../exceptions';
 import { prisma } from '../../prisma';
 import { paramIdValidationSchema } from './param-id.validation';
 
 export const getRoomById = async (req: Request, res: Response) => {
-  const params = paramIdValidationSchema.safeParse(req.params?.id);
-
-  if (!params.success) {
-    return res.status(400).json({ success: false, message: 'Invalid param' });
-  }
+  const data = paramIdValidationSchema.parse(req.params?.id);
 
   const room = await prisma.room.findUnique({
     where: {
-      id: params.data,
+      id: data,
     },
     select: {
       id: true,
@@ -30,7 +27,7 @@ export const getRoomById = async (req: Request, res: Response) => {
   });
 
   if (!room) {
-    return res.json({ success: false });
+    throw new BadRequest('Room id not fould');
   }
 
   return res.json({
