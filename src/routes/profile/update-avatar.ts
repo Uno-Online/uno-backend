@@ -8,7 +8,7 @@ import { AVATAR_SVG_URL } from "../../constants";
 export const updateAvatar = async (
   req: RequestWithUser,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const body = avatarSeedValidationSchema.safeParse(req.body);
 
@@ -35,8 +35,8 @@ export const updateAvatar = async (
     return res.json({
       url,
       avatarSeed,
-    })
+    });
   } catch (error) {
     next(error);
   }
-}
+};
