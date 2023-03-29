@@ -1,9 +1,9 @@
-import { NextFunction, Response } from "express";
-import { RequestWithUser } from "../../types/request-with-user";
-import { avatarSeedValidationSchema } from "./avatar-seed.validation";
-import { BadRequest } from "../../exceptions";
-import { prisma } from "../../prisma";
-import { AVATAR_SVG_URL } from "../../constants";
+import { NextFunction, Response } from 'express';
+import { RequestWithUser } from '../../types/request-with-user';
+import { avatarSeedValidationSchema } from './avatar-seed.validation';
+import { BadRequest } from '../../exceptions';
+import { prisma } from '../../prisma';
+import { AVATAR_SVG_URL } from '../../constants';
 
 export const updateAvatar = async (
   req: RequestWithUser,
