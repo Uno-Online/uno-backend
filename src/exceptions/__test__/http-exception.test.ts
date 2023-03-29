@@ -14,20 +14,16 @@ describe('Http exception class', () => {
   it('Check the message being a string', () => {
     const httpException = new HttpException('String message', statusCode);
 
-    expect(JSON.parse(httpException.message)).toEqual({
-      message: 'String message',
-      status: 0,
-    });
+    expect(httpException.message).toBe('String message');
+    expect(httpException.status).toBe(0);
   });
 
-  it('Check the message being an object', () => {
-    const message = {
-      message: 'Object message',
-    };
+  it('Check the message in the error', () => {
+    const message = 'Error message';
 
     const httpException = new HttpException(message, statusCode);
 
-    expect(JSON.parse(httpException.message)).toEqual(message);
+    expect(httpException.message).toBe(message);
   });
 
   it('Check if the status is correct', () => {

@@ -9,23 +9,18 @@ export const changeUsername = async (
   res: Response,
   next: NextFunction
 ) => {
-  const body = usernameValidationSchema.safeParse(req.body);
-
-  if (!body.success) {
-    throw new BadRequest('Invalid request body');
-  }
-
-  const { data } = body;
+  const data = usernameValidationSchema.parse(req.body);
 
   try {
     if (req.user?.username === data.username) {
-      return res.json({
+      res.json({
         id: req.user?.id,
         username: data.username,
         email: req.user?.email,
         createdAt: req.user?.createdAt,
         updatedAt: req.user?.updatedAt,
       });
+      return;
     }
 
     const usernameInUse = await prisma.user.count({
@@ -47,7 +42,7 @@ export const changeUsername = async (
       },
     });
 
-    return res.json({
+    res.json({
       id: req.user?.id,
       username: data.username,
       email: req.user?.email,
@@ -55,6 +50,6 @@ export const changeUsername = async (
       updatedAt: req.user?.updatedAt,
     });
   } catch (err) {
-    return next(err);
+    next(err);
   }
 };
