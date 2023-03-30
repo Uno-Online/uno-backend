@@ -1,13 +1,14 @@
-import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import { JsonWebTokenError } from 'jsonwebtoken';
 import { ZodError } from 'zod';
 import HttpException from '../exceptions/http-exception';
 
 const errorHandlingMiddleware = (
-  err: ErrorRequestHandler,
+  err: Error,
   req: Request,
   res: Response,
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-  _next: NextFunction
+  next: NextFunction
 ) => {
   if (err instanceof HttpException) {
     return res
@@ -19,8 +20,10 @@ const errorHandlingMiddleware = (
       .status(400)
       .json({ success: false, errors: JSON.parse(err.message) });
   }
-
-  return res.sendStatus(500);
+  if (err instanceof JsonWebTokenError) {
+    return res.status(401).json({ success: false, message: err.message });
+  }
+  return res.status(500).json({ success: false, message: err.message });
 };
 
 export default errorHandlingMiddleware;
