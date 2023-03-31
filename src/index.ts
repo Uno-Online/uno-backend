@@ -12,11 +12,13 @@ import { logger } from './logger';
 
 const app = express();
 
-app.use(cors({
-  origin: process.env.WEB_URL,
+const whiteList = process.env.WHITELIST ? JSON.parse(process.env.WHITELIST) : null;
+const corsConfig = {
+  origin: whiteList,
   credentials: true,
   exposedHeaders: ['set-cookie']
-}));
+};
+app.use(cors(corsConfig));
 app.use(express.json());
 app.use(cookieParser());
 app.use(authMiddleware);
