@@ -1,8 +1,7 @@
-import { Prisma, RoomState } from '@prisma/client';
+import { RoomState } from '@prisma/client';
 import { NextFunction, Response } from 'express';
 import { RequestWithUser } from '../../types/request-with-user';
 import { roomNameValidatorSchema } from './room.validation';
-import { BadRequest } from '../../exceptions';
 import { prisma } from '../../prisma';
 
 export const createRoom = async (
@@ -23,11 +22,6 @@ export const createRoom = async (
     });
     res.status(200).json(room);
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      if (err.code === 'P2002') {
-        throw new BadRequest('Room name already in use');
-      }
-    }
     next(err);
   }
 };
