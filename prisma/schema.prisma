@@ -92,7 +92,7 @@ enum RoomFlow {
 
 model Room {
   id          Int           @id @default(autoincrement())
-  name        String        @unique
+  name        String
   // Fluxo da partida (horário ou anti-horário)
   flow        RoomFlow      @default(CLOCKWISE)
   state       RoomState
