@@ -4,8 +4,6 @@ CREATE TABLE `User` (
     `username` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NULL,
     `passwordHash` VARCHAR(191) NULL,
-    `isGuest` BOOLEAN NOT NULL,
-    `avatarSeed` INTEGER NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
@@ -30,12 +28,8 @@ CREATE TABLE `RoomPlayer` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `playerId` INTEGER NOT NULL,
     `index` INTEGER NOT NULL,
-    `status` ENUM('DISCONNECTED', 'CONNECTED') NOT NULL DEFAULT 'CONNECTED',
     `roomId` INTEGER NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `RoomPlayer_playerId_roomId_key`(`playerId`, `roomId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -43,7 +37,7 @@ CREATE TABLE `RoomPlayer` (
 CREATE TABLE `Card` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `color` ENUM('RED', 'BLUE', 'GREEN', 'YELLOW', 'WILDCARD') NOT NULL,
-    `symbol` ENUM('SKIP', 'REVERSE', 'COLOR_CHANGING', 'DRAW_FOUR', 'DRAW_TWO', 'NUMERIC') NOT NULL,
+    `symbol` ENUM('BLOCK', 'REVERSE', 'COLOR_SWAP', 'SUM_FOUR', 'SUM_TWO', 'NUMERIC') NOT NULL,
     `number` INTEGER NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
@@ -83,7 +77,7 @@ CREATE TABLE `RoomCard` (
     `cardId` INTEGER NOT NULL,
     `roomId` INTEGER NOT NULL,
     `playerId` INTEGER NULL,
-    `state` ENUM('ON_HOLD', 'ON_DECK', 'DISPOSED') NOT NULL,
+    `state` ENUM('ON_HOLD', 'ON_STACK', 'DISPOSED') NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
