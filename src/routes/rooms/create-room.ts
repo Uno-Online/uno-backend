@@ -1,8 +1,7 @@
-import { Prisma, RoomState } from '@prisma/client';
+import { RoomCardState, RoomState } from '@prisma/client';
 import { NextFunction, Response } from 'express';
 import { RequestWithUser } from '../../types/request-with-user';
 import { roomNameValidatorSchema } from './room.validation';
-import { BadRequest } from '../../exceptions';
 import { prisma } from '../../prisma';
 
 export const createRoom = async (
@@ -14,20 +13,32 @@ export const createRoom = async (
   const { id: userId } = req.user!;
 
   try {
-    const { creatorId, ...room } = await prisma.room.create({
-      data: {
-        name: data.name,
-        creatorId: userId,
-        state: RoomState.WAITING_FOR_PLAYERS,
-      },
+    const { creatorId, ...room } = await prisma.$transaction(async (tx) => {
+      const roomData = await tx.room.create({
+        data: {
+          name: data.name,
+          creatorId: userId,
+          state: RoomState.WAITING_FOR_PLAYERS,
+        },
+      });
+
+      const roomCard = (await tx.card.findMany({ select: { id: true } }))
+        .sort(() => Math.random() - 0.5)
+        .map((obj) => ({
+          cardId: obj.id,
+          roomId: roomData.id,
+          state: RoomCardState.ON_DECK,
+        }));
+
+      await tx.roomCard.createMany({
+        data: roomCard,
+      });
+
+      return roomData;
     });
-    res.status(200).json(room);
+
+    res.json(room);
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      if (err.code === 'P2002') {
-        throw new BadRequest('Room name already in use');
-      }
-    }
     next(err);
   }
 };
