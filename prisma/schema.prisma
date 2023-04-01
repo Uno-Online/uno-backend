@@ -16,6 +16,7 @@ model User {
   isGuest       Boolean
   avatarSeed    Int
   sessions      UserSession[]
+  socketSessions UserSocketSession[]
   rooms         Room[]
   roomRounds    RoomRound[]
   roomCards     RoomCard[]
@@ -33,6 +34,15 @@ model UserSession {
   updatedAt   DateTime  @updatedAt
 }
 
+model UserSocketSession {
+  id          Int       @id @default(autoincrement())
+  token       String    @unique
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
 enum RoomState {
   // Aguardando jogadores
   WAITING_FOR_PLAYERS
@@ -42,15 +52,25 @@ enum RoomState {
   FINISHED
 }
 
+enum RoomPlayerStatus {
+  // Desconectado
+  DISCONNECTED
+  // Conectado
+  CONNECTED
+}
+
 model RoomPlayer {
   id Int @id @default(autoincrement())
   playerId Int
   index Int
+  status RoomPlayerStatus @default(CONNECTED)
   player User @relation(fields: [playerId], references: [id])
   roomId Int
   room Room @relation(fields: [roomId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([playerId, roomId])
 }
 
 enum CardSymbol {
@@ -92,7 +112,7 @@ enum RoomFlow {
 
 model Room {
   id          Int           @id @default(autoincrement())
-  name        String        @unique
+  name        String
   // Fluxo da partida (horário ou anti-horário)
   flow        RoomFlow      @default(CLOCKWISE)
   state       RoomState

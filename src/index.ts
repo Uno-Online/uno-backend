@@ -11,7 +11,13 @@ import { authMiddleware, errorHandlingMiddleware } from './middlewares';
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    // TODO: Change to whitelisted domains
+    origin: '*',
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(authMiddleware);
@@ -22,4 +28,6 @@ const server = http.createServer(app);
 
 SocketServer.init(server);
 
-server.listen(process.env.PORT || 3000, () => logger.info('Server started'));
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => logger.info(`🚀 Server started at port ${PORT}`));

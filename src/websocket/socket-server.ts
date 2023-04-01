@@ -3,6 +3,7 @@ import http from 'http';
 import { handshake } from './events/handshake';
 import * as incomingEvents from './events';
 import type { IncomingEvents } from './types';
+import { disconnect } from './events/disconnect';
 
 export class SocketServer {
   public static io: Server<IncomingEvents>;
@@ -23,6 +24,8 @@ export class SocketServer {
       Object.entries(incomingEvents).forEach(([key, handler]) => {
         socket.on(key as keyof IncomingEvents, handler(this.io, socket));
       });
+
+      socket.on('disconnect', disconnect(this.io, socket));
     });
   }
 }
