@@ -26,11 +26,9 @@ export const getRoomById = async (req: Request, res: Response) => {
     },
   });
 
-  if (!room) {
-    throw new BadRequest('Room id not fould');
-  }
+  if (!room) throw new BadRequest('Room id not found');
 
-  return res.json({
+  res.json({
     ...room,
     players: room.players.flatMap((obj) => obj.player),
   });

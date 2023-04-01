@@ -6,9 +6,8 @@ import http from 'http';
 import cors from 'cors';
 import { SocketServer } from './websocket/socket-server';
 import { router } from './routes';
-import errorHandlingMiddleware from './middlewares/error-handling.middleware';
-import { authMiddleware } from './middlewares/auth.middleware';
 import { logger } from './logger';
+import { authMiddleware, errorHandlingMiddleware } from './middlewares';
 
 const app = express();
 

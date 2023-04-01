@@ -17,13 +17,13 @@ export const logout = async (req: Request, res: Response) => {
 
     if (userSession.count >= 1) {
       res.clearCookie(CookieKey.AuthToken);
-      return res.json({ success: true });
+      res.json({ success: true });
     }
 
-    return res
+    res
       .status(400)
       .json({ success: false, message: 'No user found with this token' });
   } catch (err) {
-    return res.status(500).json({ success: false, message: 'Invalid JWT' });
+    res.status(500).json({ success: false, message: 'Invalid JWT' });
   }
 };

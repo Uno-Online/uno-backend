@@ -40,5 +40,5 @@ export const getRooms = async (req: RequestWithUser, res: Response) => {
     return Object.assign(room, { players: count.players });
   });
 
-  return res.json({ totalRooms, currentPage, totalPage, rooms });
+  res.json({ totalRooms, currentPage, totalPage, rooms });
 };

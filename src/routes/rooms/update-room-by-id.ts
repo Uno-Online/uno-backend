@@ -65,5 +65,5 @@ export const updateRoomNameById = async (
     },
   });
 
-  return res.json(resRoom);
+  res.json(resRoom);
 };

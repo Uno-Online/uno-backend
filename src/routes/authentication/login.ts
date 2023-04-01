@@ -4,6 +4,7 @@ import { CookieKey } from '../../constants/cookie-key';
 import { BadRequest } from '../../exceptions';
 import { prisma } from '../../prisma';
 import { JwtService } from '../../services';
+import type { JwtPayload } from '../../types/jwt-payload';
 import { loginValidationSchema } from './login.validation';
 
 export const login = async (req: Request, res: Response) => {
@@ -23,7 +24,7 @@ export const login = async (req: Request, res: Response) => {
     user?.passwordHash &&
     (await bcrypt.compare(data.password, user.passwordHash))
   ) {
-    const token = JwtService.encrypt({ userId: user.id });
+    const token = JwtService.encrypt<JwtPayload>({ userId: user.id });
 
     await prisma.userSession.create({
       data: {

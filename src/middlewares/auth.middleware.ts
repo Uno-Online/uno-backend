@@ -4,6 +4,8 @@ import { Forbidden } from '../exceptions';
 import { prisma } from '../prisma';
 import { JwtService } from '../services';
 import type { RequestWithUser } from '../types/request-with-user';
+import { generateAvatarUrl } from '../utils';
+import type { JwtPayload } from '../types/jwt-payload';
 
 /**
  * Middleware para validar o cookie `auth_token`
@@ -21,13 +23,14 @@ export const authMiddleware = async (
     !req.url.startsWith('/avatars')
   ) {
     try {
-      const payload = JwtService.decrypt<{ userId: number }>(authToken);
+      const payload = JwtService.decrypt<JwtPayload>(authToken);
 
       const user = await prisma.user.findFirst({
         select: {
           id: true,
           username: true,
           email: true,
+          avatarSeed: true,
           createdAt: true,
           updatedAt: true,
         },
@@ -42,7 +45,8 @@ export const authMiddleware = async (
       });
 
       if (user) {
-        req.user = user;
+        const [, avatarUrl] = generateAvatarUrl(user.avatarSeed);
+        req.user = { ...user, avatarUrl };
 
         next();
         return;
@@ -50,8 +54,6 @@ export const authMiddleware = async (
 
       throw new Forbidden('no user found with this token');
     } catch (err) {
-      // res.json({ success: false, message: 'invalid jwt' });
-      // return;
       next(err);
     }
   }

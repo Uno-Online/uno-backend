@@ -17,3 +17,6 @@ export const AVATAR_SVG_URL = 'https://api.dicebear.com/5.x/fun-emoji/svg';
 
 // Valor que define o tamanho da seed
 export const SEED_LENGTH = 100000;
+
+// Número máximo de jogadores em uma sala
+export const MAX_PLAYERS_IN_A_ROOM = 4;
