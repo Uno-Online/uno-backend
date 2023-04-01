@@ -107,6 +107,7 @@ model Room {
 
 model RoomRound {
   id        Int       @id @default(autoincrement())
+  consolidatedColor   CardColor
   playerId  Int
   player    User      @relation(fields: [playerId], references: [id])
   roomId    Int
@@ -127,7 +128,6 @@ enum RoomCardState {
 model RoomCard {
   id                  Int             @id @default(autoincrement())
   // Cor definitiva da carta (para cartas coringa, o jogador pode escolher a cor do baralho)
-  consolidatedColor   CardColor
   cardId              Int
   card                Card            @relation(fields: [cardId], references: [id])
   roomId              Int
