@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import { prisma } from '../../prisma';
+import { paramRoomName } from './param-room-name';
 
 export const findRoomByName = async (req: Request, res: Response) => {
-  const data = req.query;
-  const name = String(data.name);
+  const data = paramRoomName.parse(req.query);
 
   const rooms = await prisma.room.findMany({
     where: {
       name: {
-        contains: name,
+        contains: data.name,
       },
     },
     select: {
