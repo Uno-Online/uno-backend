@@ -1,7 +1,6 @@
 import { NextFunction, Response } from 'express';
 import { RequestWithUser } from '../../types/request-with-user';
 import { avatarSeedValidationSchema } from './avatar-seed.validation';
-import { BadRequest } from '../../exceptions';
 import { prisma } from '../../prisma';
 import { AVATAR_SVG_URL } from '../../constants';
 
@@ -10,14 +9,10 @@ export const updateAvatar = async (
   res: Response,
   next: NextFunction
 ) => {
-  const body = avatarSeedValidationSchema.safeParse(req.body);
+  const body = avatarSeedValidationSchema.parse(req.body);
 
-  if (!body.success) {
-    throw new BadRequest('Invalid request body');
-  }
-
-  const id = req.user?.id;
-  const { avatarSeed } = body.data;
+  const { id } = req.user!;
+  const { avatarSeed } = body;
 
   try {
     await prisma.user.update({
@@ -31,8 +26,7 @@ export const updateAvatar = async (
 
     const url = new URL('', AVATAR_SVG_URL);
     url.searchParams.set('seed', String(avatarSeed));
-
-    return res.json({
+    res.json({
       url,
       avatarSeed,
     });
