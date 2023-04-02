@@ -4,6 +4,9 @@ import { RequestWithUser } from '../../types/request-with-user';
 import { roomNameValidatorSchema } from './room.validation';
 import { prisma } from '../../prisma';
 
+/**
+ * Cria uma nova sala
+ * */
 export const createRoom = async (
   req: RequestWithUser,
   res: Response,

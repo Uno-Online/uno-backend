@@ -5,4 +5,4 @@
 
 */
 -- AlterTable
-ALTER TABLE `user` ADD COLUMN `avatarSeed` INTEGER NOT NULL;
+ALTER TABLE `User` ADD COLUMN `avatarSeed` INTEGER NOT NULL;

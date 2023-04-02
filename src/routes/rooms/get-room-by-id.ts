@@ -1,3 +1,4 @@
+import { RoomPlayerStatus } from '@prisma/client';
 import type { Request, Response } from 'express';
 import { BadRequest } from '../../exceptions';
 import { prisma } from '../../prisma';
@@ -6,15 +7,18 @@ import { paramIdValidationSchema } from './param-id.validation';
 export const getRoomById = async (req: Request, res: Response) => {
   const data = paramIdValidationSchema.parse(req.params?.id);
 
-  const room = await prisma.room.findUnique({
+  const room = await prisma.room.findFirst({
     where: {
       id: data,
     },
     select: {
       id: true,
       name: true,
+      flow: true,
+      state: true,
       players: {
         select: {
+          status: true,
           player: {
             select: {
               id: true,
@@ -22,16 +26,20 @@ export const getRoomById = async (req: Request, res: Response) => {
             },
           },
         },
+        where: {
+          status: RoomPlayerStatus.CONNECTED,
+        },
       },
     },
   });
 
-  if (!room) {
-    throw new BadRequest('Room id not fould');
-  }
+  if (!room) throw new BadRequest('Room id not found');
 
-  return res.json({
+  res.json({
     ...room,
-    players: room.players.flatMap((obj) => obj.player),
+    players: room.players.flatMap(({ player, status }) => ({
+      ...player,
+      status,
+    })),
   });
 };

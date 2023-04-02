@@ -22,5 +22,6 @@ jobs:
           node-version-file: .nvmrc
           cache: yarn
       - run: yarn --frozen-lockfile
+      - run: yarn tsc --noEmit
       - run: yarn lint:ci
       - run: yarn build

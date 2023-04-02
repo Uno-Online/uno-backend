@@ -32,7 +32,7 @@ export const getRooms = async (req: RequestWithUser, res: Response) => {
     }),
   ]);
 
-  const totalPage = totalRooms > 0 ? Math.ceil(totalRooms / take) : 1;
+  const totalPages = totalRooms > 0 ? Math.ceil(totalRooms / take) : 1;
   const currentPage = Math.floor(skip / take) + 1;
 
   const rooms = roomsResult.map((obj) => {
@@ -40,5 +40,5 @@ export const getRooms = async (req: RequestWithUser, res: Response) => {
     return Object.assign(room, { players: count.players });
   });
 
-  return res.json({ totalRooms, currentPage, totalPage, rooms });
+  res.json({ totalRooms, currentPage, totalPages, rooms });
 };

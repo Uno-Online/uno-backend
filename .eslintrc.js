@@ -30,6 +30,11 @@ module.exports = {
         'src/**/': 'KEBAB_CASE',
       },
     ],
+    'no-param-reassign': [
+      'error',
+      { props: true, ignorePropertyModificationsFor: ['socket', 'req'] },
+    ],
+    'no-underscore-dangle': ['error', { allow: ['_count'] }],
     'check-file/filename-naming-convention': [
       'error',
       {
