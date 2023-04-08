@@ -1,0 +1,11 @@
+{
+  "generic": "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
+  "not_found": "Não foi possível encontrar o recurso solicitado.",
+  "invalid_request": "A requisição é inválida. Verifique os parâmetros enviados.",
+  "user_already_exists": "E-mail já em uso.",
+  "user_not_found": "Usuário não encontrado.",
+  "invalid_credentials": "E-mail ou senha inválidos!",
+  "room_not_found": "Sala não encontrada.",
+  "room_name_already_exists": "Já existe uma sala com esse nome.",
+  "player_is_not_owner_of_the_room": "Jogador não é o dono da sala."
+}
