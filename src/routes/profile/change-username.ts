@@ -1,10 +1,9 @@
-import { NextFunction, Response } from 'express';
+import { Request, NextFunction, Response } from 'express';
 import { prisma } from '../../prisma';
-import { RequestWithUser } from '../../types/request-with-user';
 import { usernameValidationSchema } from './username.validation';
 
 export const changeUsername = async (
-  req: RequestWithUser,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {

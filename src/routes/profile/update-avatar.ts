@@ -1,11 +1,10 @@
-import { NextFunction, Response } from 'express';
-import { RequestWithUser } from '../../types/request-with-user';
+import { Request, NextFunction, Response } from 'express';
 import { avatarSeedValidationSchema } from './avatar-seed.validation';
 import { prisma } from '../../prisma';
 import { AVATAR_SVG_URL } from '../../constants';
 
 export const updateAvatar = async (
-  req: RequestWithUser,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
