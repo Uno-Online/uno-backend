@@ -56,7 +56,7 @@ export const register = async (
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === 'P2002') {
-        throw new BadRequest('Email already in use');
+        throw new BadRequest(req.__internalize('email_already_exists'));
       }
     }
     next(err);

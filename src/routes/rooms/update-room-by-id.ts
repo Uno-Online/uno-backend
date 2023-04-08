@@ -1,13 +1,12 @@
 import { Prisma } from '@prisma/client';
-import { NextFunction, Response } from 'express';
+import { Request, NextFunction, Response } from 'express';
 import { BadRequest, Forbidden } from '../../exceptions';
 import { prisma } from '../../prisma';
-import { RequestWithUser } from '../../types/request-with-user';
 import { paramIdValidationSchema } from './param-id.validation';
 import { roomNameValidatorSchema } from './room.validation';
 
 export const updateRoomNameById = async (
-  req: RequestWithUser,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -25,11 +24,11 @@ export const updateRoomNameById = async (
   });
 
   if (!room) {
-    throw new BadRequest('Room does not exist');
+    throw new BadRequest(req.__internalize('room_not_found'));
   }
 
   if (room.creatorId !== userId) {
-    throw new Forbidden('Player is not the owner of the room');
+    throw new Forbidden(req.__internalize('player_is_not_owner_of_the_room'));
   }
 
   try {
@@ -44,7 +43,7 @@ export const updateRoomNameById = async (
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === 'P2002') {
-        throw new BadRequest('Room name already in use');
+        throw new BadRequest(req.__internalize('room_name_already_exists'));
       }
     }
     next(err);

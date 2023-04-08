@@ -16,7 +16,7 @@ export const login = async (req: Request, res: Response) => {
   });
 
   if (!user) {
-    throw new BadRequest('invalid email or password');
+    throw new BadRequest(req.__internalize('invalid_credentials'));
   }
 
   if (
@@ -39,6 +39,6 @@ export const login = async (req: Request, res: Response) => {
       success: true,
     });
   } else {
-    throw new BadRequest('invalid username or password');
+    throw new BadRequest(req.__internalize('invalid_credentials'));
   }
 };
