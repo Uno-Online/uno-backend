@@ -1,10 +1,19 @@
 export {};
 
+declare module '*.json' {
+  const value: any;
+  export default value;
+}
+
+import ptBR from '../../locales/pt-BR.json';
+
+type TranslationKey = keyof typeof ptBR;
+
 declare global {
   namespace Express {
     interface Request {
       user?: User;
-      __internalize: (msg: string) => string;
+      __internalize: (msg: TranslationKey) => string;
     }
 
     interface User {
