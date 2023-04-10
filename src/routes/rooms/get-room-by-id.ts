@@ -27,7 +27,7 @@ export const getRoomById = async (req: Request, res: Response) => {
   });
 
   if (!room) {
-    throw new BadRequest(req.__internalize('room_not_found'));
+    throw new BadRequest(req.fnInternalize('room_not_found'));
   }
 
   return res.json({

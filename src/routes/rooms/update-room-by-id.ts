@@ -24,11 +24,11 @@ export const updateRoomNameById = async (
   });
 
   if (!room) {
-    throw new BadRequest(req.__internalize('room_not_found'));
+    throw new BadRequest(req.fnInternalize('room_not_found'));
   }
 
   if (room.creatorId !== userId) {
-    throw new Forbidden(req.__internalize('player_is_not_owner_of_the_room'));
+    throw new Forbidden(req.fnInternalize('player_is_not_owner_of_the_room'));
   }
 
   try {
@@ -43,7 +43,7 @@ export const updateRoomNameById = async (
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === 'P2002') {
-        throw new BadRequest(req.__internalize('room_name_already_exists'));
+        throw new BadRequest(req.fnInternalize('room_name_already_exists'));
       }
     }
     next(err);

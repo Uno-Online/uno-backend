@@ -18,11 +18,11 @@ export const deleteRoomById = async (req: Request, res: Response) => {
   });
 
   if (room === null) {
-    throw new BadRequest(req.__internalize('room_not_found'));
+    throw new BadRequest(req.fnInternalize('room_not_found'));
   }
 
   if (room.creatorId !== userId) {
-    throw new Forbidden(req.__internalize('player_is_not_owner_of_the_room'));
+    throw new Forbidden(req.fnInternalize('player_is_not_owner_of_the_room'));
   }
 
   await prisma.$transaction(async (tx) => {

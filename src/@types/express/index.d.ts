@@ -13,7 +13,7 @@ declare global {
   namespace Express {
     interface Request {
       user?: User;
-      __internalize: (msg: TranslationKey) => string;
+      fnInternalize: (msg: TranslationKey) => string;
     }
 
     interface User {

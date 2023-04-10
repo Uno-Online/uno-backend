@@ -20,7 +20,7 @@ export const getUserById = async (req: Request, res: Response) => {
   });
 
   if (!userFound) {
-    throw new BadRequest(req.__internalize('user_not_found'));
+    throw new BadRequest(req.fnInternalize('user_not_found'));
   }
 
   res.json(userFound);

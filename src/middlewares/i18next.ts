@@ -1,14 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 import i18next from 'i18next';
+import ptBR from '../locales/pt-BR.json';
+import enUS from '../locales/en.json';
 
 i18next.init({
   fallbackLng: 'en-US',
   resources: {
     'pt-BR': {
-      translation: require('./../locales/pt-BR.json'),
+      translation: ptBR,
     },
     'en-US': {
-      translation: require('./../locales/en.json'),
+      translation: enUS,
     },
   },
 });
@@ -16,7 +18,7 @@ i18next.init({
 export function internalize(req: Request, res: Response, next: NextFunction) {
   const { 'Accept-Language': lang = 'pt-BR' } = req.cookies;
 
-  req.__internalize = i18next.getFixedT(lang);
+  req.fnInternalize = i18next.getFixedT(lang);
 
   next();
 }
