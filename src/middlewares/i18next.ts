@@ -16,7 +16,7 @@ i18next.init({
 });
 
 export function internalize(req: Request, res: Response, next: NextFunction) {
-  const { 'Accept-Language': lang = 'pt-BR' } = req.cookies;
+  const { 'accept-language': lang = 'pt-BR' } = req.headers;
 
   req.fnInternalize = i18next.getFixedT(lang);
 
