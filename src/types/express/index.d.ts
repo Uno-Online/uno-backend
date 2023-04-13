@@ -1,11 +1,11 @@
+import ptBR from '../../locales/pt-BR.json';
+
 export {};
 
 declare module '*.json' {
   const value: any;
   export default value;
 }
-
-import ptBR from '../../locales/pt-BR.json';
 
 type TranslationKey = keyof typeof ptBR;
 
