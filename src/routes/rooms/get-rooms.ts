@@ -1,13 +1,12 @@
 import { RoomState } from '@prisma/client';
-import { Response } from 'express';
+import { Response, Request } from 'express';
 import { prisma } from '../../prisma';
-import type { RequestWithUser } from '../../types/request-with-user';
 import { paramsPaginationValidation } from './params-pagination.validation';
 
 /**
  * Retorna uma lista paginada de salas abertas
  * */
-export const getRooms = async (req: RequestWithUser, res: Response) => {
+export const getRooms = async (req: Request, res: Response) => {
   const data = paramsPaginationValidation.parse(req.query);
 
   const [take, skip] = [Number(data.take), Number(data.skip)];

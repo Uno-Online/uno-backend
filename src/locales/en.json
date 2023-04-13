@@ -1,0 +1,11 @@
+{
+  "generic": "Something went wrong",
+  "user_already_exists": "E-mail already in use",
+  "user_not_found": "User not found.",
+  "not_found": "Resource not Found",
+  "invalid_request": "Bad Request",
+  "invalid_credentials": "Invalid email or password!",
+  "room_not_found": "Room not found.",
+  "room_name_already_exists": "A room with this name already exists.",
+  "player_is_not_owner_of_the_room": "The player is not the owner of the room."
+}

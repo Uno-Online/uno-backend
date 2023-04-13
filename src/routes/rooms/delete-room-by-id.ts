@@ -1,10 +1,9 @@
-import { Response } from 'express';
-import { RequestWithUser } from '../../types/request-with-user';
+import { Request, Response } from 'express';
 import { prisma } from '../../prisma';
 import { paramIdValidationSchema } from './param-id.validation';
 import { BadRequest, Forbidden } from '../../exceptions';
 
-export const deleteRoomById = async (req: RequestWithUser, res: Response) => {
+export const deleteRoomById = async (req: Request, res: Response) => {
   const id = paramIdValidationSchema.parse(req.params?.id);
   const { id: userId } = req.user!;
 
@@ -19,11 +18,11 @@ export const deleteRoomById = async (req: RequestWithUser, res: Response) => {
   });
 
   if (room === null) {
-    throw new BadRequest('Room does not exist');
+    throw new BadRequest(req.fnInternalize('room_not_found'));
   }
 
   if (room.creatorId !== userId) {
-    throw new Forbidden('Player is not the owner of the room');
+    throw new Forbidden(req.fnInternalize('player_is_not_owner_of_the_room'));
   }
 
   await prisma.$transaction(async (tx) => {

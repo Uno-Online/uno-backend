@@ -1,11 +1,11 @@
 import { RoomCardState, RoomState } from '@prisma/client';
-import { NextFunction, Response } from 'express';
-import { RequestWithUser } from '../../types/request-with-user';
+import { Request, NextFunction, Response } from 'express';
+
 import { roomNameValidatorSchema } from './room.validation';
 import { prisma } from '../../prisma';
 
 export const createRoom = async (
-  req: RequestWithUser,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {

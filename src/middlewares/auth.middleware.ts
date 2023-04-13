@@ -1,16 +1,15 @@
-import { Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { CookieKey } from '../constants/cookie-key';
 import { Forbidden } from '../exceptions';
 import { prisma } from '../prisma';
 import { JwtService } from '../services';
-import type { RequestWithUser } from '../types/request-with-user';
 
 /**
  * Middleware para validar o cookie `auth_token`
  * Se a validação ocorrer com sucesso, o `req.user` irá conter os dados do usuário autorizado
  * */
 export const authMiddleware = async (
-  req: RequestWithUser,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {

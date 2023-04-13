@@ -9,12 +9,14 @@ import { router } from './routes';
 import errorHandlingMiddleware from './middlewares/error-handling.middleware';
 import { authMiddleware } from './middlewares/auth.middleware';
 import { logger } from './logger';
+import { internalize } from './middlewares/i18next';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use(internalize);
 app.use(authMiddleware);
 app.use(router);
 app.use(errorHandlingMiddleware);
@@ -23,4 +25,4 @@ const server = http.createServer(app);
 
 SocketServer.init(server);
 
-server.listen(process.env.PORT || 3000, () => logger.info('Server started'));
+server.listen(process.env.PORT || 3001, () => logger.info('Server started'));
