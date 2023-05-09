@@ -530,6 +530,35 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@esbuild-kit/cjs-loader@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.npmjs.org/@esbuild-kit/cjs-loader/-/cjs-loader-2.4.2.tgz"
+  integrity sha512-BDXFbYOJzT/NBEtp71cvsrGPwGAMGRB/349rwKuoxNSiKjPraNNnlK6MIIabViCjqZugu6j+xeMDlEkWdHHJSg==
+  dependencies:
+    "@esbuild-kit/core-utils" "^3.0.0"
+    get-tsconfig "^4.4.0"
+
+"@esbuild-kit/core-utils@^3.0.0":
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/@esbuild-kit/core-utils/-/core-utils-3.1.0.tgz"
+  integrity sha512-Uuk8RpCg/7fdHSceR1M6XbSZFSuMrxcePFuGgyvsBn+u339dk5OeL4jv2EojwTN2st/unJGsVm4qHWjWNmJ/tw==
+  dependencies:
+    esbuild "~0.17.6"
+    source-map-support "^0.5.21"
+
+"@esbuild-kit/esm-loader@^2.5.5":
+  version "2.5.5"
+  resolved "https://registry.npmjs.org/@esbuild-kit/esm-loader/-/esm-loader-2.5.5.tgz"
+  integrity sha512-Qwfvj/qoPbClxCRNuac1Du01r9gvNOT+pMYtJDapfB1eoGN1YlJ1BixLyL9WVENRx5RXgNLdfYdx/CuswlGhMw==
+  dependencies:
+    "@esbuild-kit/core-utils" "^3.0.0"
+    get-tsconfig "^4.4.0"
+
+"@esbuild/linux-x64@0.17.18":
+  version "0.17.18"
+  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.17.18.tgz"
+  integrity sha512-66RmRsPlYy4jFl0vG80GcNRdirx4nVWAzJmXkevgphP1qf4dsLQCpSKGM3DUQCojwU1hnepI63gNZdrr02wHUA==
+
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.3.0"
   resolved "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.3.0.tgz"
@@ -1022,16 +1051,9 @@
   resolved "https://registry.npmjs.org/@types/cookie/-/cookie-0.4.1.tgz"
   integrity sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==
 
-"@types/cors@^2.8.12":
+"@types/cors@^2.8.12", "@types/cors@^2.8.13":
   version "2.8.13"
   resolved "https://registry.npmjs.org/@types/cors/-/cors-2.8.13.tgz"
-  integrity sha512-RG8AStHlUiV5ysZQKq97copd2UmVYw3/pRMLefISZ3S1hK104Cwm7iLQ3fTKx+lsUH2CE8FlLaYeEA2LSeqYUA==
-  dependencies:
-    "@types/node" "*"
-
-"@types/cors@^2.8.13":
-  version "2.8.13"
-  resolved "https://registry.yarnpkg.com/@types/cors/-/cors-2.8.13.tgz#b8ade22ba455a1b8cb3b5d3f35910fd204f84f94"
   integrity sha512-RG8AStHlUiV5ysZQKq97copd2UmVYw3/pRMLefISZ3S1hK104Cwm7iLQ3fTKx+lsUH2CE8FlLaYeEA2LSeqYUA==
   dependencies:
     "@types/node" "*"
@@ -1853,14 +1875,9 @@ cookie@0.5.0:
   resolved "https://registry.npmjs.org/cookie/-/cookie-0.5.0.tgz"
   integrity sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==
 
-cookie@~0.4.1:
-  version "0.4.2"
-  resolved "https://registry.npmjs.org/cookie/-/cookie-0.4.2.tgz"
-  integrity sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==
-
 cors@^2.8.5, cors@~2.8.5:
   version "2.8.5"
-  resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
+  resolved "https://registry.npmjs.org/cors/-/cors-2.8.5.tgz"
   integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
   dependencies:
     object-assign "^4"
@@ -2194,6 +2211,34 @@ es-to-primitive@^1.2.1:
     is-callable "^1.1.4"
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
+
+esbuild@~0.17.6:
+  version "0.17.18"
+  resolved "https://registry.npmjs.org/esbuild/-/esbuild-0.17.18.tgz"
+  integrity sha512-z1lix43jBs6UKjcZVKOw2xx69ffE2aG0PygLL5qJ9OS/gy0Ewd1gW/PUQIOIQGXBHWNywSc0floSKoMFF8aK2w==
+  optionalDependencies:
+    "@esbuild/android-arm" "0.17.18"
+    "@esbuild/android-arm64" "0.17.18"
+    "@esbuild/android-x64" "0.17.18"
+    "@esbuild/darwin-arm64" "0.17.18"
+    "@esbuild/darwin-x64" "0.17.18"
+    "@esbuild/freebsd-arm64" "0.17.18"
+    "@esbuild/freebsd-x64" "0.17.18"
+    "@esbuild/linux-arm" "0.17.18"
+    "@esbuild/linux-arm64" "0.17.18"
+    "@esbuild/linux-ia32" "0.17.18"
+    "@esbuild/linux-loong64" "0.17.18"
+    "@esbuild/linux-mips64el" "0.17.18"
+    "@esbuild/linux-ppc64" "0.17.18"
+    "@esbuild/linux-riscv64" "0.17.18"
+    "@esbuild/linux-s390x" "0.17.18"
+    "@esbuild/linux-x64" "0.17.18"
+    "@esbuild/netbsd-x64" "0.17.18"
+    "@esbuild/openbsd-x64" "0.17.18"
+    "@esbuild/sunos-x64" "0.17.18"
+    "@esbuild/win32-arm64" "0.17.18"
+    "@esbuild/win32-ia32" "0.17.18"
+    "@esbuild/win32-x64" "0.17.18"
 
 escalade@^3.1.1:
   version "3.1.1"
@@ -2728,6 +2773,11 @@ get-symbol-description@^1.0.0:
   dependencies:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.1"
+
+get-tsconfig@^4.4.0:
+  version "4.5.0"
+  resolved "https://registry.npmjs.org/get-tsconfig/-/get-tsconfig-4.5.0.tgz"
+  integrity sha512-MjhiaIWCJ1sAU4pIQ5i5OfOuHHxVo1oYeNsWTON7jxYkod8pHocXeh+SSbmu5OZZZK73B6cbJ2XADzXehLyovQ==
 
 glob-parent@^5.1.2:
   version "5.1.2"
@@ -4740,7 +4790,7 @@ sonic-boom@^3.0.0, sonic-boom@^3.1.0:
   dependencies:
     atomic-sleep "^1.0.0"
 
-source-map-support@^0.5.12:
+source-map-support@^0.5.12, source-map-support@^0.5.21:
   version "0.5.21"
   resolved "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.21.tgz"
   integrity sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==
@@ -5090,6 +5140,17 @@ tsutils@^3.21.0:
   integrity sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==
   dependencies:
     tslib "^1.8.1"
+
+tsx@^3.12.7:
+  version "3.12.7"
+  resolved "https://registry.npmjs.org/tsx/-/tsx-3.12.7.tgz"
+  integrity sha512-C2Ip+jPmqKd1GWVQDvz/Eyc6QJbGfE7NrR3fx5BpEHMZsEHoIxHL1j+lKdGobr8ovEyqeNkPLSKp6SCSOt7gmw==
+  dependencies:
+    "@esbuild-kit/cjs-loader" "^2.4.2"
+    "@esbuild-kit/core-utils" "^3.0.0"
+    "@esbuild-kit/esm-loader" "^2.5.5"
+  optionalDependencies:
+    fsevents "~2.3.2"
 
 tty-table@^4.1.5:
   version "4.2.1"

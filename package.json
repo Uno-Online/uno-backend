@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
+    "start:dev": "tsx watch src/index.ts",
     "build": "tsc",
     "lint": "eslint src --ext .ts,.js --fix",
     "format": "prettier --write src/",
@@ -52,6 +53,7 @@
     "pino": "^8.11.0",
     "pino-pretty": "^10.0.0",
     "socket.io": "^4.6.1",
+    "tsx": "^3.12.7",
     "zod": "^3.21.4"
   },
   "packageManager": "yarn@1.22.19",
