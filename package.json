@@ -36,6 +36,7 @@
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^3.12.7",
     "typescript": "^5.0.2"
   },
   "dependencies": {
@@ -53,7 +54,6 @@
     "pino": "^8.11.0",
     "pino-pretty": "^10.0.0",
     "socket.io": "^4.6.1",
-    "tsx": "^3.12.7",
     "zod": "^3.21.4"
   },
   "packageManager": "yarn@1.22.19",
