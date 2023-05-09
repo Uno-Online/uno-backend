@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
+    "start:dev": "tsx watch src/index.ts",
     "build": "tsc",
     "lint": "eslint src --ext .ts,.js --fix",
     "format": "prettier --write src/",
@@ -35,6 +36,7 @@
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^3.12.7",
     "typescript": "^5.0.2"
   },
   "dependencies": {
